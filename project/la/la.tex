@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{color}
+\usepackage{savetrees}
+\usepackage{listings}
+\usetikzlibrary{shapes}
+
+
+\linespread{1.4}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.9ex plus 0.5ex minus 0.2ex}
+
+\title{A Simple Solution to the Level Ancestor Problem}
+
+\author{Gaurav Menghani \& Dhruv Matani}
+
+\begin{document}
+\maketitle
+
+
+\section{Abstract}
+In this paper, we present a simple approach to the Level Ancestor Problem.
+
+\section{Fast Binary Search}
+Given a sorted array, the standard binary search takes $O(\log{n})$ steps. 
+We can pre-process the sorted array in $O((\log{\log{n}})^3)$ (FIXME) time 
+such that we can perform this search in $O((\log{\log{n}})^3)$ (FIXME) time.
+
+Given an array of $n$ sorted elements, we subdivide the array into chunks of 
+size $\log{n}$ each. There would be $ \frac{n}{ \log{n} }$ chunks in all. For each 
+chunk, we choose a representative element, which is the first element in each 
+chunk, and store these elements, in order, in a new array of size $\frac{n}{\log{n}}$. 
+Now, if we need to search for an element, we can first search amongst the 
+array of representative elements at a cost of $O(\log{\frac{n}{\log{n}}})$, 
+if we do not find the element in this array, we can use the largest element 
+in the represntative element array which is smaller than our target element to 
+index into the correct chunk of the original array. Now, we only need to search 
+in the chunk we indexed into, and this would take $O(\log{\log{n}})$ time since 
+the chunk is of size $\log{n}$.
+
+We can follow this approach recursively, and the analysis below shows that this
+preprocessing takes $O((\log{\log{n}})^3)$ (FIXME) time, and a query takes
+$O((\log{\log{n}})^3)$ (FIXME) time. The space requirement of the approach is 
+$O(\log{n})$?? (FIXME).
+
+\section{Level Ancestor Problem}
+Do a Euler Tour of the tree, and label the nodes in increasing order of their
+first appearance in the Euler Tour. We maintain a vector for each level in the 
+tree, and as and when we see nodes for the first time, we insert them into their
+labels into the respective vectors (as per the level of the node). It is easy
+to see that the labels in each vector would be in increasing order.
+
+Now, if we wish to answer the $l$-th Level Ancestor query for a node labelled $n$,
+we can index into the vector for the $l$-th level, and binary search for the 
+greatest label in the vector, which is smaller than $n$. The reason why this 
+works is that the ancestor at level $l$ would have been visited before the node 
+labelled $n$, and hence have a smaller label. Any other node on level $l$ would have
+either been visited before the correct ancestor, or after the node $n$. Using
+Binary Search, we can thus answer the Level Ancestor query in $O(\log{n})$ time, 
+with $O(n)$ extra space but without any preprocessing. 
+
+Using the fast binary search we described earlier, we can improve the running 
+time to $O((\log{\log{n}})^3)$ (FIXME) time, without increasing the extra space
+requirement asymptotically.
+
+\end{document}
