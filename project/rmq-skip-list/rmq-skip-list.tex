@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{color}
+\usepackage{savetrees}
+\usepackage{listings}
+\usetikzlibrary{shapes}
+
+
+\linespread{1.4}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.9ex plus 0.5ex minus 0.2ex}
+
+\title{Range Minimum Query using Skip Lists}
+
+\author{Dhruv Matani \& Gaurav Menghani}
+
+\begin{document}
+\maketitle
+
+
+\section{Abstract}
+Skip Lists are a randomized data structure, which allow $Insert(elem)$ and $Delete(elem)$
+in $O(\log{n})$ time with high probability. A 'Range Minimum Query' (RMQ) is a query of type
+$Min(i,j)$, which returns the minimum element between the indices $i$ and $j$.
+
+In this paper, we show how we can do Range Minimum Query using Skip Lists, with $O(\log{n})$
+time for all $Min(i,j)$, $Insert(elem, index)$, and $Delete(index)$ operations with
+high probability.
+
+
+\end{document}
