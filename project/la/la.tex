@@ -29,27 +29,6 @@ approach to solving the \textit{Level Ancestor Problem}.
 
 \end{abstract}
 
-\section{Fast Binary Search}
-Given a sorted array, the standard binary search takes $O(\log{n})$ steps. 
-We can pre-process the sorted array in $O((\log{\log{n}})^3)$ (FIXME) time 
-such that we can perform this search in $O((\log{\log{n}})^3)$ (FIXME) time.
-
-Given an array of $n$ sorted elements, we subdivide the array into chunks of 
-size $\log{n}$ each. There would be $ \frac{n}{ \log{n} }$ chunks in all. For each 
-chunk, we choose a representative element, which is the first element in each 
-chunk, and store these elements, in order, in a new array of size $\frac{n}{\log{n}}$. 
-Now, if we need to search for an element, we can first search amongst the 
-array of representative elements at a cost of $O(\log{\frac{n}{\log{n}}})$, 
-if we do not find the element in this array, we can use the largest element 
-in the represntative element array which is smaller than our target element to 
-index into the correct chunk of the original array. Now, we only need to search 
-in the chunk we indexed into, and this would take $O(\log{\log{n}})$ time since 
-the chunk is of size $\log{n}$.
-
-We can follow this approach recursively, and the analysis below shows that this
-preprocessing takes $O((\log{\log{n}})^3)$ (FIXME) time, and a query takes
-$O((\log{\log{n}})^3)$ (FIXME) time. The space requirement of the approach is 
-$O(\log{n})$?? (FIXME).
 
 \section{Level Ancestor Problem}
 Do a Euler Tour of the tree, and label the nodes in increasing order of their
