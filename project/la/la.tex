@@ -31,23 +31,25 @@ approach to solving the \textit{Level Ancestor Problem}.
 
 
 \section{Level Ancestor Problem}
-Do a Euler Tour of the tree, and label the nodes in increasing order of their
-first appearance in the Euler Tour. We maintain a vector for each level in the 
-tree, and as and when we see nodes for the first time, we insert them into their
-labels into the respective vectors (as per the level of the node). It is easy
-to see that the labels in each vector would be in increasing order.
+We perform a \textit{pre-order traversal} of the tree we are
+interested in, and label the nodes in increasing order of their first
+appearance in the traversal. We maintain a \textit{dynamic array} for
+each level in the tree, and as and when we see a node for the first
+time, we insert the node into the \textit{dynamic table} at that
+level. The \textit{value} associated with each node is an integer,
+which keeps increasing as we follow the traversal along the treem and
+a pointer to the node itself. It is easy to see that the labels in
+each vector would be in strictly \textit{increasing} order.
 
-Now, if we wish to answer the $l$-th Level Ancestor query for a node labelled $n$,
-we can index into the vector for the $l$-th level, and binary search for the 
-greatest label in the vector, which is smaller than $n$. The reason why this 
-works is that the ancestor at level $l$ would have been visited before the node 
-labelled $n$, and hence have a smaller label. Any other node on level $l$ would have
-either been visited before the correct ancestor, or after the node $n$. Using
-Binary Search, we can thus answer the Level Ancestor query in $O(\log{n})$ time, 
-with $O(n)$ extra space but without any preprocessing. 
-
-Using the fast binary search we described earlier, we can improve the running 
-time to $O((\log{\log{n}})^3)$ (FIXME) time, without increasing the extra space
-requirement asymptotically.
+Now, if we wish to answer the $l^{th}$ Level Ancestor query for a node
+with \textit{value} $k$, we can index into the vector for the $l^{th}$
+level, and perform a binary search for the greatest label, smaller
+than $k$. This value is called the \textit{lower bound} of $k$. The
+reason why this works is that the ancestor at level $l$ would have
+been visited before the node labelled $n$, and hence have a smaller
+label. Any other node on level $l$ would have either been visited
+before the correct ancestor, or after the node $k$. Using Binary
+Search, we can thus answer the Level Ancestor query in $O(\log{n})$
+time, with $O(n)$ extra and $O(n)$ initial preprocessing.
 
 \end{document}
