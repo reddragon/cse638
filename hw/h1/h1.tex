@@ -10,7 +10,7 @@
 \usetikzlibrary{shapes}
 
 
-\linespread{1.4}
+\linespread{1.5}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1.9ex plus 0.5ex minus 0.2ex}
 
@@ -171,14 +171,18 @@ TODO Clarify
 \subsection{In $c\log{n}$ contiguous bins, there are strictly
 fewer than $c\log{n}$ balls.}
 \begin{enumerate}
-\item Q: In how many ways can we select $c\log{n}$
-contiguous bins?\\
-A: $\dbinom{2n-c\log{n}}{1}  = (2n-c\log{n})$.
-\item Q: If we throw $n$ balls, with what probability
-would $c\log{n}$ balls fall into our selection of $c\log{n}$
-bins?\\
-A: $\left(\dfrac{c\log{n}}{2n}\right)^{c\log{n}} \times 
-\left( \dfrac{2n-c\log{n}}{2n} \right) ^{n-c\log{n}}$.
+
+\item Q: In how many ways can we select $c\log{n}$ contiguous bins?
+
+  A: $\dbinom{2n-c\log{n}}{1}  = (2n-c\log{n})$.
+
+\item Q: If we select one contiguous run of $c\log{n}$ bins, and throw
+  $n$ balls, what is the probability that $c\log{n}$ balls fall into
+  our selection of $c\log{n}$ bins?
+
+  A: $\left(\dfrac{c\log{n}}{2n}\right)^{c\log{n}} \times 
+  \left( \dfrac{2n-c\log{n}}{2n} \right) ^{n-c\log{n}}$.
+
 \end{enumerate}
 
 Hence, the probability of the existence of a contiguous
@@ -198,16 +202,17 @@ TODO Check
 
 \subsection{Why this proves that the longest sequence of probes
 is $O(\log{n})?$}
-Since with high probability, there is no selection of $c\log{n}$ 
-bins with more than $c\log{n}$ balls, we can analogously say,
-if we were to hash $n$ elements into $2n$ slots, with high 
-probability, there would be no selection of contiguous $c\log{n}$ 
-slots which have more than $c\log{n}$ balls. 
 
-Since there would be no such selection of slots, the length of
-the longest probe would be $O(\log{n})$.
+
+Since with high probability, there is no selection of $c\log{n}$ bins
+with more than $c\log{n}$ balls, we can analogously say that if we
+were to hash $n$ elements into $2n$ slots, there would be no selection of contiguous $c\log{n}$ slots which have
+more than $c\log{n}$ balls with high probability.
+
+Since there would be no such selection of slots, the length of the
+longest probe would be $O(\log{n})$.
+
 \clearpage
-
 
 
 
