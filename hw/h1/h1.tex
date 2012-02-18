@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{color}
+\usepackage{savetrees}
+\usepackage{listings}
+\usetikzlibrary{shapes}
+
+
+\linespread{1.4}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.9ex plus 0.5ex minus 0.2ex}
+
+\title{CSE638 \\ Advanced Graduate Algorithms (and Data Structures) -- Homework-1}
+
+\author{Dhruv Matani (108267786) \& Gaurav Menghani (108266803)}
+
+\begin{document}
+\maketitle
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\section{Proof of Linearity of Expectation}
+
+Show that: $E(cX + Y) = cE(X) + E(Y)$, where\\
+$c$ is a constant, and $X$ \& $Y$ are random variables.\\
+Let $S$ \& $T$ be the set of values that $X$ \& $Y$ respectively can take on.
+
+Lemma-1: $P(X=k) = \displaystyle\sum\limits_{m \in T} P(X=k\ and\ Y=m)$\\
+$E(cX = Y) = \displaystyle\sum\limits_{k \in S} \displaystyle\sum\limits_{m \in T} (ck + m) P(X=k\ and\ Y=m)$\\
+$= \displaystyle\sum\limits_{k \in S} \displaystyle\sum\limits_{m \in T} ck P(X=k\ and\ Y=m) + \displaystyle\sum\limits_{m \in T} \displaystyle\sum\limits_{k \in S} m P(X=k\ and\ Y=m)$\\
+$= c\displaystyle\sum\limits_{k \in S} k \displaystyle\sum\limits_{m \in T} P(X=k\ and\ Y=m) + \displaystyle\sum\limits_{m \in T} m \displaystyle\sum\limits_{k \in S} P(X=k\ and\ Y=m)$\\
+$= c\displaystyle\sum\limits_{k \in S} k P(X=k) + \displaystyle\sum\limits_{m \in T} P(Y=m)$ \ldots{} (using Lemma-1)\\
+$= cE(X) + E(Y)$\footnote{Proof copied from: \url{https://www.youtube.com/watch?v=PicS-yWlZRw}}\\
+
+\clearpage
+
+\section{Coin Flip Problem}
+If claim that if we flip the coin $c \log{n}$ times, where both $c$ and
+$n$ are large, we will get a head.
+
+Let us find the probability of not getting a head after $c \log{n}$ flips.\\
+${= (1-p)^{c\log{n}}}$ \\
+Let $1-p = \dfrac{1}{q}$ \\
+$= \dfrac{1}{q^{c\log{n}}}$ \\
+$= \dfrac{1}{n^{c\log{q}}} $\\
+Thus, for large enough $n$ and $c$, the probability is polynomially small
+that we would not have a head even after $c \log{n}$ coin flips.
+\clearpage
+
+
+\section{Balls \& Hats (Secretary Hiring Problem)}
+This is a randomization problem. As hinted by Prof. Bender in office hours of CSE548,
+this is a problem analogous to finding a suitable life-partner. It might not
+be optimal to marry the first person you date, nor would it be optimal to 
+wait till you are 60. The line has to be drawn somewhere in between.\\
+\\
+The approach \footnote{Partial solution from: \url{http://en.wikipedia.org/wiki/Secretary_problem}} 
+is to reject a constant fraction of the balls that you encounter
+first, and then choose the first ball which has the greatest number seen so far. 
+Let us assume we decide to reject the first $\frac{1}{c}$ fraction of
+the balls we encounter. We only need to figure out $c$ to be sufficient enough
+to be correct $\frac{1}{4}$ of the time, or better.\\
+\\
+Let $\frac{n}{c} = r$. This means, we reject the first $r$ balls. Now, we have
+the next $n-r$ balls to choose from. What is the probability that using the 
+above-mentioned strategy, we choose a ball from these $n-r$ balls and it turns 
+out to have the biggest number?\\
+\\
+Assume we chose ball $i$, where $i > r$, \\
+$P($ball $i$ was chosen and is the best$) = P($ ball $i$ is the best$) \times P($ 
+the best ball amongst the first $i-1$ balls lies in the first $r$ balls$)$.\\
+\\
+$P($ ball $i$ is the best$) = \frac{1}{n}$. The second probability deals with the 
+fact that if the best ball amongst the first $i-1$ balls did not lie in the first 
+$r$ balls, the $i$-th ball wouldn't have had been chosen.This probability is, 
+$\frac{\binom{r}{1}}{\binom{i-1}{1}}$, which is, $\frac{r}{i-1}$.\\
+\\
+Thus, $P($ball $i$ was chosen and is the best$) = \frac{1}{n} \times \frac{r}{i-1}$.\\
+\\
+Since $i$ can vary between $r+1$ to $n$, the total probability of winning becomes,\\
+$P(winning) = \displaystyle\sum\limits_{i=r+1}^n P($ ball $i$ was chosen and is the best$)$.\\
+\\
+$P(winning) = \displaystyle\sum\limits_{i=r+1}^n \frac{1}{n} \times \frac{r}{i-1}$.\\
+$P(winning) = \frac{r}{n} \displaystyle\sum\limits_{i=r+1}^n \frac{1}{i-1}$\\
+By using the formula for harmonic series \footnote{\url{http://en.wikipedia.org/wiki/Harmonic_series_(mathematics)}}, 
+this can be simplified to,\\
+$P(winning) = \frac{r}{n} (\log{n} - \log{r})$\\
+$P(winning) = -\frac{r}{n} (\log{r} - \log{n})$\\
+$P(winning) = -\frac{r}{n}(\log{\frac{r}{n}})$\\
+\\
+Since, $\frac{n}{c} = r$, therefore,\\
+$P(winning) = - c \log{c}$\\
+Since, $P(winning) \geq \frac{1}{4}$,\\
+$P(winning) = - c \log{c} \geq \frac{1}{4}$,\\
+Solving this, we get, $c = 0.6994905768$. Thus, if we reject nearly first 69.94\% of the balls,
+we would win $\frac{1}{4}$ of the time or more.
+\clearpage
+
+\section{Probabilistic Ball Throwing Problem}
+\subsection{All balls are blue}
+The probability of a blue ball is $\frac{1}{2}$, hence the probability of
+$n$ blue balls is $\dfrac{1}{2^n}$.
+
+\subsection{$\frac{n}{2}$ balls are blue, and $\frac{n}{2}$ are red}
+Pr($\frac{n}{2}$ balls are blue and $\frac{n}{2}$ balls are red) = (Number of ways of choosing $\frac{n}{2}$
+balls which will be blue) $\times$ Pr($\frac{n}{2}$ are blue) $\times$
+Pr($\frac{n}{2}$ are red).
+
+$= \dbinom{n}{\frac{n}{2}} \times \dfrac{1}{2^{\frac{n}{2}}} \times \dfrac{1}{2^{\frac{n}{2}}}  $ \\
+
+\subsection{All balls thrown in the bin are blue $B_{n} = n-1$}
+Initially there is one blue ball and one red ball. Rest of the $n-2$ balls will
+all need to be blue. As per the formula, the probability of the next ball 
+being blue is, $\frac{1}{2}$. Then, we would have 2 blue balls and one red ball.
+Therefore, the probability of the ball after that being blue is $\frac{2}{3}$,
+and so on.
+
+Therefore, the cumulative probaility is, \\
+$= \dfrac{1}{2} \times \dfrac{2}{3} \times \dfrac{3}{4} \times ... \times \dfrac{n-3}{n-2} \times \dfrac{n-2}{n-1}$ \\
+$= \dfrac{1}{n-1}$ \\
+Thus, the probability of having $B_{n} = n-1$ is $\dfrac{1}{n-1}$.
+\subsection{$B_{n} = \dfrac{n}{2}$}
+TODO Need to write something cogent
+
+\clearpage
+
+\section{Dinner Party Problem}
+TODO Clarify
+
+\clearpage
+
+\section{Hash Table Problem}
+TODO
+\clearpage
+
+
+
+
+\end{document}
