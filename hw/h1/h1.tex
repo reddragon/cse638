@@ -128,8 +128,38 @@ $= \dfrac{1}{2} \times \dfrac{2}{3} \times \dfrac{3}{4} \times ... \times \dfrac
 $= \dfrac{1}{n-1}$ \\
 Thus, the probability of having $B_{n} = n-1$ is $\dfrac{1}{n-1}$.
 \subsection{$B_{n} = \dfrac{n}{2}$}
-TODO Need to write something cogent
+Whenever a ball is drawn, the probability of it being a 
+particular color is $\dfrac{B_{t}}{B_{t} + R_{t}}$, or
+$\dfrac{R_{t}}{B_{t}+R_{t}}$, the cumulative probability
+is the product of these probabilities.
 
+Since we want, both $B_{n} = \dfrac{n}{2}$ and 
+$R_{n} = \dfrac{n}{2}$, in the end, and the value 
+$B_{t}+R_{t}$ in the denominator will keep increasing
+from 2 onwards to $n-1$, since we are continuosly adding
+balls. Thus the value of the denominator will be $(n-1)!$.
+
+It is also easy to see that when we add blue balls, we
+would be multiplying the numerator in an increasing 
+sequence from 2 onwards to $\dfrac{n}{2}-1$, since we
+need to have $B_{n} = \dfrac{n}{2}$. Thus, we would
+be multiplying the numerator by $(\frac{n}{2}-1)!$.
+We would do the same for red balls, and hence in all
+we would be multiplying the numerator by 
+$(\frac{n}{2}-1)^2$. \\
+
+Therefore,\\
+Pr(A sequence of draws occurs which ends with $B_{n} = \frac{n}{2}$) $ = \dfrac{(\frac{n}{2}-1)^2}{(n-1)!} $.
+\\
+\\
+We can find the number of such sequence of draws, by
+finding the number of ways in which we can order the
+drawing of red or blue balls. This is $\dbinom{n-2}{\frac{n}{2}-1}$.
+
+Hence, \\
+Pr($B_n = \frac{n}{2}$) $ = 
+\dbinom{n-2}{\frac{n}{2}-1} \times
+\dfrac{(\frac{n}{2}-1)^2}{(n-1)!}$.  
 \clearpage
 
 \section{Dinner Party Problem}
