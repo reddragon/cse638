@@ -114,7 +114,9 @@ Pr($\frac{n}{2}$ balls are blue and $\frac{n}{2}$ balls are red) = (Number of wa
 balls which will be blue) $\times$ Pr($\frac{n}{2}$ are blue) $\times$
 Pr($\frac{n}{2}$ are red).
 
-$= \dbinom{n}{\frac{n}{2}} \times \dfrac{1}{2^{\frac{n}{2}}} \times \dfrac{1}{2^{\frac{n}{2}}}  $ \\
+$= \dbinom{n}{\frac{n}{2}} \times \dfrac{1}{2^{\frac{n}{2}}} \times \dfrac{1}{2^{\frac{n}{2}}}$
+
+$= \dbinom{n}{\frac{n}{2}} \times \dfrac{1}{2^{n}}$
 
 \subsection{All balls thrown in the bin are blue $B_{n} = n-1$}
 Initially there is one blue ball and one red ball. Rest of the $n-2$ balls will
@@ -143,23 +145,28 @@ It is also easy to see that when we add blue balls, we
 would be multiplying the numerator in an increasing 
 sequence from 2 onwards to $\dfrac{n}{2}-1$, since we
 need to have $B_{n} = \dfrac{n}{2}$. Thus, we would
-be multiplying the numerator by $(\frac{n}{2}-1)!$.
+be multiplying the numerator by $\left(\dfrac{n}{2}-1\right)!$.
 We would do the same for red balls, and hence in all
 we would be multiplying the numerator by 
-$(\frac{n}{2}-1)^2$. \\
+$\left(\left(\dfrac{n}{2}-1\right)!\right)^2$. \\
 
-Therefore,\\
-Pr(A sequence of draws occurs which ends with $B_{n} = \frac{n}{2}$) $ = \dfrac{(\frac{n}{2}-1)^2}{(n-1)!} $.
-\\
-\\
-We can find the number of such sequence of draws, by
-finding the number of ways in which we can order the
-drawing of red or blue balls. This is $\dbinom{n-2}{\frac{n}{2}-1}$.
+Therefore,
 
-Hence, \\
-Pr($B_n = \frac{n}{2}$) $ = 
-\dbinom{n-2}{\frac{n}{2}-1} \times
-\dfrac{(\frac{n}{2}-1)^2}{(n-1)!}$.  
+Pr(A sequence of draws occurs which ends with $B_{n} = \frac{n}{2}$) $ = \dfrac{((\frac{n}{2}-1)!)^2}{(n-1)!} $.
+
+We can find the number of such sequence of draws, by finding the
+number of ways in which we can order the drawing of red or blue
+balls. This is $\dbinom{n-2}{\frac{n}{2}-1}$.
+
+Hence,
+
+Pr($B_n = \frac{n}{2}$) $ = \dbinom{n-2}{\frac{n}{2}-1} \times
+\dfrac{((\frac{n}{2}-1)!)^2}{(n-1)!}$
+
+$= \dfrac{(n-2)!}{((\frac{n}{2}-1)!)^2} \times \dfrac{((\frac{n}{2}-1)!)^2}{(n-1)!}$
+
+$= \dfrac{1}{n-1}$
+
 \clearpage
 
 \section{Dinner Party Problem}
@@ -170,44 +177,56 @@ TODO Clarify
 \section{Hash Table Problem}
 \subsection{In $c\log{n}$ contiguous bins, there are strictly
 fewer than $c\log{n}$ balls.}
-\begin{enumerate}
 
-\item Q: In how many ways can we select $c\log{n}$ contiguous bins?
+Let $E[X] =$ The expected number of balls in a run of $d\log{n}$ bins.
 
-  A: $\dbinom{2n-c\log{n}}{1}  = (2n-c\log{n})$.
+$\Rightarrow E[X] = \frac{1}{2}d\log{n}$
 
-\item Q: If we select one contiguous run of $c\log{n}$ bins, and throw
-  $n$ balls, what is the probability that $c\log{n}$ balls fall into
-  our selection of $c\log{n}$ bins?
+We know that $Pr(X > (1+\delta)E[X]) \le \left( \frac{e^\delta}{(1+\delta)^{(1+\delta)}} \right)^{E[x]}$ if $\delta > 0$
 
-  A: $\left(\dfrac{c\log{n}}{2n}\right)^{c\log{n}} \times 
-  \left( \dfrac{2n-c\log{n}}{2n} \right) ^{n-c\log{n}}$.
+If $(1+\delta)E[X] = d\log{n}$, then
 
-\end{enumerate}
+$(1+\delta)\frac{1}{2}d\log{n} = d\log{n}$
 
-Hence, the probability of the existence of a contiguous
-sequence of $c\log{n}$ bins, with $c\log{n}$ balls is: \\
-$ = (2n-c\log{n}) \times \left(\dfrac{c\log{n}}{2n}\right)^{c\log{n}} \times 
-\left( \dfrac{2n-c\log{n}}{2n} \right) ^{n-c\log{n}}$ \\
-$ \leq (2n-c\log{n}) \times \left(\dfrac{c\log{n}}{2n}\right)^{c\log{n}}$ \\
-$ \leq (2n) \times \left( \dfrac{c\log{n}}{2n}\right)^{c\log{n}} $ \\
-\\ When $n$ is sufficiently large, \\
-$ \leq (2n) \times \left( \dfrac{1}{n} \right)^{c\log{n}}$ \\
-$ \leq \dfrac{2}{n^{c\log{n}-1}} $ \\
-\\ Thus, the probability is polynomially small. Hence, with high
-probability, there is no selection of $c\log{n}$ bins with
-more than $c\log{n}$ balls.
+$\Rightarrow (1+\delta)\frac{1}{2} = 1$
 
-TODO Check
+$\Rightarrow (1+\delta) = 2$
+
+$\Rightarrow \delta = 1$
+
+$\therefore Pr(X > d\log{n}) \le \left( \frac{e^1}{2^2} \right)^{\frac{1}{2}d\log{n}}$
+
+$\le \left( \frac{e}{4} \right)^{\frac{1}{2}d\log{n}}$
+
+$\le \left( \frac{1}{1.47} \right)^{\frac{1}{2}d\log{n}}$
+
+$\le \frac{1}{n^{0.277d}}$
+
+Let $d = \frac{c}{2}\log{n}$
+
+$\therefore Pr(X > \frac{c}{2}\log{n}) \le \frac{1}{n^{0.1385c}}$
+
+For sufficiently large $c$, $\dfrac{1}{n^{0.1385c}}$ is polynomially
+small.
+
+Hence, if we take any block of size $\frac{c}{2}\log{n}$ bins (out of
+the total blocks being ${2n}/{\frac{c}{2}\log{n}}$), then we will
+not have more than $\frac{c}{2}\log{n}$ balls in any consecutive
+block. It follows that a run of $c\log{n}$ bins will NOT have $>
+c\log{n}$ balls with high probability.
+
+Thus, the probability is polynomially small. Hence, with high
+probability, there is no selection of $c\log{n}$ bins with more than
+$c\log{n}$ balls.
 
 \subsection{Why this proves that the longest sequence of probes
 is $O(\log{n})?$}
 
-
 Since with high probability, there is no selection of $c\log{n}$ bins
 with more than $c\log{n}$ balls, we can analogously say that if we
-were to hash $n$ elements into $2n$ slots, there would be no selection of contiguous $c\log{n}$ slots which have
-more than $c\log{n}$ balls with high probability.
+were to hash $n$ elements into $2n$ slots, there would be no selection
+of $c\log{n}$ contiguous slots which have more than $c\log{n}$ balls
+with high probability.
 
 Since there would be no such selection of slots, the length of the
 longest probe would be $O(\log{n})$.
