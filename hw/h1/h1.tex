@@ -163,7 +163,31 @@ Pr($B_n = \frac{n}{2}$) $ =
 \clearpage
 
 \section{Dinner Party Problem}
-TODO Clarify
+For this problem we took help from 
+\footnote{http://math.stackexchange.com/questions/5595/taking-seats-on-a-plane}.
+
+Here are a few observations: 
+
+When it is the last person's turn, only one of two seats can be left. 
+Either the first, or the last. We can prove this as follows. There is definitely 
+atleast one seat left since there are $n$ seats and $n-1$ would have had made 
+choices till then. Also, it is not possible for a seat $i$ to be
+left at the end, where $i \notin  \{ 1, n \}$. Because if it was, the person $i$ would
+have chosen that seat when it was his/her choice. 
+
+When any person makes a choice between either seat $1$ or seat $n$, it is a decisive choice.
+If seat $n$ is taken, person $n$ won't be able take his/her choice. If the seat
+$1$ is taken, then all the following people would get the seats of their choice, and
+hence person $n$ would get the seat assigned to him/her. If any other seat is 
+chosen, it won't have any effect on the outcome, and this decisive choice
+is simply postponed. 
+
+Thus, the choice is always made once, and the outcome only depends upon this one
+choice. Both the options could be chosen with a probability $\frac{1}{2}$ each. It is
+only if when the seat $1$ is chosen, that person $n$ would get to sit in his/her place
+and this choice is made with a probability of $\frac{1}{2}$. Therefore, the person
+$n$ gets to sit in his/her seat with probability $\frac{1}{2}$. 
+
 
 \clearpage
 
@@ -192,7 +216,7 @@ $ \leq (2n) \times \left( \dfrac{1}{n} \right)^{c\log{n}}$ \\
 $ \leq \dfrac{2}{n^{c\log{n}-1}} $ \\
 \\ Thus, the probability is polynomially small. Hence, with high
 probability, there is no selection of $c\log{n}$ bins with
-more than $c\log{n}$ balls.
+more than $c\log{n}$ balls. 
 
 TODO Check
 
