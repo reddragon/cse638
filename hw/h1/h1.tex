@@ -206,29 +206,29 @@ Let $E[X] =$ The expected number of balls in a run of $d\log{n}$ bins.
 
 $\Rightarrow E[X] = \frac{1}{2}d\log{n}$
 
-We know that $Pr(X > (1+\delta)E[X]) \le \left( \frac{e^\delta}{(1+\delta)^{(1+\delta)}} \right)^{E[x]}$ if $\delta > 0$
+We know that $Pr(X > (1+\delta)E[X]) \le \left( \dfrac{e^\delta}{(1+\delta)^{(1+\delta)}} \right)^{E[x]}$ if $\delta > 0$
 
 If $(1+\delta)E[X] = d\log{n}$, then
 
-$(1+\delta)\frac{1}{2}d\log{n} = d\log{n}$
+$(1+\delta)\dfrac{1}{2}d\log{n} = d\log{n}$
 
-$\Rightarrow (1+\delta)\frac{1}{2} = 1$
+$\Rightarrow (1+\delta)\dfrac{1}{2} = 1$
 
 $\Rightarrow (1+\delta) = 2$
 
 $\Rightarrow \delta = 1$
 
-$\therefore Pr(X > d\log{n}) \le \left( \frac{e^1}{2^2} \right)^{\frac{1}{2}d\log{n}}$
+$\therefore Pr(X > d\log{n}) \le \left( \dfrac{e^1}{2^2} \right)^{\frac{1}{2}d\log{n}}$
 
-$\le \left( \frac{e}{4} \right)^{\frac{1}{2}d\log{n}}$
+$\le \left( \dfrac{e}{4} \right)^{\frac{1}{2}d\log{n}}$
 
-$\le \left( \frac{1}{1.47} \right)^{\frac{1}{2}d\log{n}}$
+$\le \left( \dfrac{1}{1.47} \right)^{\frac{1}{2}d\log{n}}$
 
-$\le \frac{1}{n^{0.277d}}$
+$\le \dfrac{1}{n^{0.277d}}$
 
-Let $d = \frac{c}{2}\log{n}$
+Let $d = \dfrac{c}{2}\log{n}$
 
-$\therefore Pr(X > \frac{c}{2}\log{n}) \le \frac{1}{n^{0.1385c}}$
+$\therefore Pr(X > \frac{c}{2}\log{n}) \le \dfrac{1}{n^{0.1385c}}$
 
 For sufficiently large $c$, $\dfrac{1}{n^{0.1385c}}$ is polynomially
 small.
