@@ -177,7 +177,7 @@ Here are a few observations:
 
 When it is the last person's turn, only one of two seats can be left. 
 Either the first, or the last. We can prove this as follows. There is definitely 
-atleast one seat left since there are $n$ seats and $n-1$ would have had made 
+at least one seat left since there are $n$ seats and $n-1$ would have had made 
 choices till then. Also, it is not possible for a seat $i$ to be
 left at the end, where $i \notin  \{ 1, n \}$. Because if it was, the person $i$ would
 have chosen that seat when it was his/her choice. 
@@ -202,40 +202,50 @@ $n$ gets to sit in his/her seat with probability $\frac{1}{2}$.
 \subsection{In $c\log{n}$ contiguous bins, there are strictly
 fewer than $c\log{n}$ balls.}
 
+To show that a run of $c\log{n}$ bins does not contain more than
+$c\log{n}$ balls, we show that each bin in a mutually exclusive set of run of bins
+of size $\dfrac{c}{2}\log{n}$ does not contain more than
+$\dfrac{c}{3}\log{n}$ balls with high probability.
+
 Let $E[X] =$ The expected number of balls in a run of $d\log{n}$ bins.
 
 $\Rightarrow E[X] = \frac{1}{2}d\log{n}$
 
 We know that $Pr(X > (1+\delta)E[X]) \le \left( \frac{e^\delta}{(1+\delta)^{(1+\delta)}} \right)^{E[x]}$ if $\delta > 0$
 
-If $(1+\delta)E[X] = d\log{n}$, then
+If $(1+\delta)E[X] = \dfrac{2d}{3}\log{n}$, then
 
-$(1+\delta)\frac{1}{2}d\log{n} = d\log{n}$
+$(1+\delta)\dfrac{1}{2}d\log{n} = \dfrac{2d}{3}\log{n}$
 
-$\Rightarrow (1+\delta)\frac{1}{2} = 1$
+$\Rightarrow (1+\delta)\frac{1}{2} = \frac{2}{3}$
 
-$\Rightarrow (1+\delta) = 2$
+$\Rightarrow (1+\delta) = \frac{4}{3}$
 
-$\Rightarrow \delta = 1$
+$\Rightarrow \delta = \frac{1}{3}$
 
-$\therefore Pr(X > d\log{n}) \le \left( \frac{e^1}{2^2} \right)^{\frac{1}{2}d\log{n}}$
+$\therefore Pr(X > \frac{2d}{3}\log{n}) \le \left( \dfrac{e^{1/3}}{{4/3}^{4/3}} \right)^{\frac{1}{2}d\log{n}}$
 
-$\le \left( \frac{e}{4} \right)^{\frac{1}{2}d\log{n}}$
+$\le \left( \dfrac{1.4}{1.47} \right)^{\frac{1}{2}d\log{n}}$
 
-$\le \left( \frac{1}{1.47} \right)^{\frac{1}{2}d\log{n}}$
+$\le 0.95^{\frac{1}{2}d\log{n}}$
 
-$\le \frac{1}{n^{0.277d}}$
+$\le n^{\frac{1}{2}d\log{0.95}}$
+
+$\le \dfrac{1}{n^{0.5 \times \log{1.0515} \times d}}$
+
+$\le \dfrac{1}{n^{0.5 \times 0.07247 \times d}}$
+
+$\le \dfrac{1}{n^{0.0362d}}$
 
 Let $d = \frac{c}{2}\log{n}$
 
-$\therefore Pr(X > \frac{c}{2}\log{n}) \le \frac{1}{n^{0.1385c}}$
+$\therefore Pr(X > \frac{c}{2}\log{n}) \le \frac{1}{n^{0.0181c}}$
 
-For sufficiently large $c$, $\dfrac{1}{n^{0.1385c}}$ is polynomially
-small.
+For sufficiently large $c$, $\dfrac{1}{n^{0.0181c}}$ is polynomially small.
 
 Hence, if we take any block of size $\frac{c}{2}\log{n}$ bins (out of
 the total blocks being ${2n}/{\frac{c}{2}\log{n}}$), then we will
-not have more than $\frac{c}{2}\log{n}$ balls in any consecutive
+not have more than $\frac{c}{3}\log{n}$ balls in any consecutive
 block. It follows that a run of $c\log{n}$ bins will NOT have $>
 c\log{n}$ balls with high probability.
 
