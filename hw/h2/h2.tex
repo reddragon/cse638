@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{color}
+\usepackage{savetrees}
+\usepackage{listings}
+\usetikzlibrary{shapes}
+
+
+\linespread{1.5}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.9ex plus 0.5ex minus 0.2ex}
+
+\title{CSE638 \\ Advanced Graduate Algorithms (and Data Structures) -- Homework-1}
+
+\author{Dhruv Matani (108267786) \& Gaurav Menghani (108266803)}
+
+\begin{document}
+\maketitle
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\section{Majority Problem}
+Let us select a sample of $s = c\log{n}$ elements. In the worst-case, we can
+have the array with just two types of elements, the majority element and the
+non-majority element.
+
+Now, after drawing the sample of $s$ elements, let the random variables
+$x_{1}$ to $x_{s}$ define whether the $i$-th element was the actual majority
+element or a non-majority element.
+
+Let,
+
+\[
+  x_{i} = \left\{
+  \begin{array}{l l}
+    0 & \quad \text{if the element was a non-majority element}\\
+    1 & \quad \text{if the element was a majority element}\\
+  \end{array}
+  \right.
+\]
+
+Let, $X = \displaystyle\sum\limits_{i=1}^s{x_{i}}$,
+given that atleast 55\% of the elements in the array are the majority elements,
+$E[X] \geq \dfrac{55}{100}s$. We pick a false majority when $X < 50$. Now,
+let us find the probability of that happening.
+
+Using Chernoff Bounds, we know,\\
+$Pr(X < (1-\delta)\mu) < \left(\dfrac{e^{-\delta}}{(1-\delta)^{(1-\delta)}}\right)^\mu$.\\
+\\
+Now, $(1-\delta)\mu = \dfrac{50}{100}s$.\\
+\\
+$(1-\delta)\dfrac{55}{100}s = \dfrac{50}{100}s$.\\
+\\
+$\delta = \dfrac{1}{11}$.\\
+\\
+Now, what is $Pr($We choose a wrong majority element$)?$\\
+$ = Pr(X < \dfrac{50}{100}s) = \left(\dfrac{e^{-\frac{1}{11}}}{(\frac{10}{11})^{\frac{10}{11}}}\right)^{\frac{55}{100}s}$\\
+\\$ = Pr(X < \dfrac{50}{100}s) = \left(\dfrac{e^{-\frac{1}{20}}}{(\frac{10}{11})^{\frac{1}{2}}}\right)^s$\\
+\\$ = Pr(X < \dfrac{50}{100}s) = \left(\dfrac{1}{1.00234^{s}}\right)$\\
+\\$ = Pr(X < \dfrac{50}{100}s) = \left(\dfrac{1}{1.00234^{c\log{n}}}\right)$\\
+\\$ = Pr(X < \dfrac{50}{100}s) = \left(\dfrac{1}{n^{c\log{1.00234}}}\right)$
+\\
+Hence, the probability of finding a fake majority is polynomially small.
+\clearpage
+
+\section{Expected number of bins with exactly one ball?}
+
+\end{document}
