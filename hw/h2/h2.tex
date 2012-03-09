@@ -140,8 +140,58 @@ $\Rightarrow E[Y] = \frac{n}{e}$
 \subsection{Negative Correlation}
 
 \subsection{$\theta(n)$ empty and $\theta(n)$ full bins, with high probability}
-In Question 2, we proved that $E[$\# of empty bins$] = \dfrac{n}{e}$. Therefore
-$E[$\# of non-empty bins$] = \left(n-\frac{1}{e}\right) = $.
+In Question 2, we proved that $E[$\# of empty bins$] = \dfrac{n}{e}$. \\
+Therefore,
+$E[$\# of non-empty bins$] = \left(n-\dfrac{n}{e}\right) = \left(\dfrac{ne-n}{e}\right)$.\\
+\\
+Now, let us prove that the probability of having $\leq \dfrac{n}{10e} $ empty bins
+is polynomially small.\\
+\\
+Using Chernoff Bounds, we know,
+\\
+$Pr(X < (1-\delta)\mu) < \left(\dfrac{e^{-\delta}}{(1-\delta)^{(1-\delta)}}\right)^\mu$.
+\\
+Now, $(1-\delta)\mu = \dfrac{n}{10e}$\\
+\\
+$(1-\delta)\dfrac{n}{e} = \dfrac{n}{10e}$\\
+\\
+$\delta = \dfrac{9}{10}$\\
+\\
+$Pr\left(X < \dfrac{n}{10e}\right) < \left(\dfrac{e^{-\frac{9}{10}}}{(1-\frac{9}{10})^{(1-\frac{9}{10})}}\right)^{\frac{n}{e}}$\\
+\\
+$Pr\left(X < \dfrac{n}{10e}\right) < \left(\dfrac{e^{-\frac{9}{10}}}{(\frac{1}{10})^{(\frac{1}{10})}}\right)^{\frac{n}{e}}$\\
+\\
+$Pr\left(X < \dfrac{n}{10e}\right) < \left(\dfrac{1}{e^{\frac{9}{10}}(\frac{1}{10})^{(\frac{1}{10})}}\right)^{\frac{n}{e}}$\\
+$Pr\left(X < \dfrac{n}{10e}\right) < \left(\dfrac{1}{1.2793^{n}}\right)$\\
+\\
+Thus, the probability of having $\leq \dfrac{n}{10e} $ empty bins
+is exponentially small.\\
+\\
+Now, let us prove that the probability of having $\leq \dfrac{ne-n}{10e} $ full bins
+is polynomially small.\\
+\\
+Using Chernoff Bounds, we know,
+\\
+$Pr(X < (1-\delta)\mu) < \left(\dfrac{e^{-\delta}}{(1-\delta)^{(1-\delta)}}\right)^\mu$.
+\\
+Now, $(1-\delta)\mu = \dfrac{ne-n}{10e}$\\
+\\
+$(1-\delta)\dfrac{ne-n}{e} = \dfrac{ne-n}{10e}$\\
+\\
+$\delta = \dfrac{9}{10}$\\
+\\
+$Pr\left(X < \dfrac{ne-n}{10e}\right) < \left(\dfrac{e^{-\frac{9}{10}}}{(1-\frac{9}{10})^{(1-\frac{9}{10})}}\right)^{\frac{ne-n}{e}}$\\
+\\
+$Pr\left(X < \dfrac{ne-n}{10e}\right) < \left(\dfrac{e^{-\frac{9}{10}}}{(\frac{1}{10})^{(\frac{1}{10})}}\right)^{\frac{ne-n}{e}}$\\
+\\
+$Pr\left(X < \dfrac{ne-n}{10e}\right) < \left(\dfrac{1}{e^{\frac{9}{10}}(\frac{1}{10})^{(\frac{1}{10})}}\right)^{\frac{ne-n}{e}}$\\
+$Pr\left(X < \dfrac{ne-n}{10e}\right) < \left(\dfrac{1}{1.527^{n}}\right)$\\
+\\
+Therefore, the probability of having $\leq \dfrac{ne-n}{10e} $ full bins, is exponentially small.\\
+\\
+Hence, we can say that w.h.p, there are $\theta(n)$ empty and $\theta(n)$ full bins.
+
+\subsection{Part (b) without Chernoff Bounds}
 \clearpage
 
 \section {Lower bound on the number of number of balls in the fullest bin}
