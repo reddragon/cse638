@@ -144,11 +144,49 @@ In Question 2, we proved that $E[$\# of empty bins$] = \dfrac{n}{e}$. Therefore
 $E[$\# of non-empty bins$] = \left(n-\frac{1}{e}\right) = $.
 \clearpage
 
-\section {Problem 4}
+\section {Lower bound on the number of number of balls in the fullest bin}
+
+\subsection{Number of balls in each bin}
+
+Let $E[X] $ be the expected number of balls in a bin of size $n^{1/4}$.
+
+$\therefore E[X] = n^{1/4}$
+
+Let's find the probability that each block of $n^{1/4}$ bins contains $< \dfrac{n^{1/4}}{10}$ balls.
+
+$\therefore (1-\delta)E[X] = \dfrac{n^{1/4}}{10}$
+
+$\Rightarrow (1-\delta)n^{1/4} = \dfrac{n^{1/4}}{10}$
+
+$\Rightarrow (1-\delta) = \frac{1}{10}$
+
+$\Rightarrow \delta = \frac{9}{10}$
+
+$\therefore P(X < (1-\delta)E[X]) < \left(\dfrac{e^{-9/10}}{0.1^{0.1}}\right)^{n^{1/4}}$
+
+$< 0.511^{n^{1/4}}$
+
+Which is exponentially small in $n$, for sufficiently large $n$.
+
+
+\subsection{Lower bound on the probability that the first bin in each group contains $\Omega(\log{n}/\log{\log{n}})$ balls}
+
+Let group 1 contain $n^{1/4}$ balls.
+
+$\therefore Pr(1^{st}$ Bin in group-1 contains exactly $k$ Balls$) = \dbinom{n^{1/4}}{k} \left( \dfrac{1}{n^{1/4}} \right)^{k} \left( 1 - \dfrac{1}{n^{1/4}} \right)^{(n^{1/4} - k)}$
+
+$\therefore Pr(1^{st}$ Bin in group-1 contains $\le k$ Balls$) \le \dbinom{n^{1/4}}{k} \left( \dfrac{1}{n^{1/4}} \right)^{k}$
+
+TODO
 
 \clearpage
 
-\section {Problem 5}
+\section {Simple multiple access channel}
+
+\subsection{Backoff strategy to execute all packets in $\Theta(n)$ time when $n$ is \textbf{known}}
+
+\subsection{Backoff strategy to execute all packets in $\Theta(n)$ time when $n$ is \textbf{not known}}
+
 
 \clearpage
 \end{document}
