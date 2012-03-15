@@ -27,6 +27,8 @@
 
 \clearpage
 
+% $\frac{\frac{\frac{a}{b}}{c}}{\sqrt{\sqrt{{x}^{y}}}}$
+
 \section{Majority Problem}
 Let us select a sample of $s = c\log{n}$ elements. In the worst-case, we can
 have the array with just two types of elements, the majority element and the
@@ -225,9 +227,23 @@ Let group 1 contain $n^{1/4}$ balls.
 
 $\therefore Pr(1^{st}$ Bin in group-1 contains exactly $k$ Balls$) = \dbinom{n^{1/4}}{k} \left( \dfrac{1}{n^{1/4}} \right)^{k} \left( 1 - \dfrac{1}{n^{1/4}} \right)^{(n^{1/4} - k)}$
 
-$\therefore Pr(1^{st}$ Bin in group-1 contains $\le k$ Balls$) \le \dbinom{n^{1/4}}{k} \left( \dfrac{1}{n^{1/4}} \right)^{k}$
+$\therefore Pr(1^{st}$ Bin in group-1 contains $\ge k$ Balls$) \ge \dbinom{n^{1/4}}{k} \left( \dfrac{1}{n^{1/4}} \right)^{k}$
 
-TODO
+$\ge \left(\dfrac{n^{1/4}}{k}\right)^{k} \left( \dfrac{1}{n^{1/4}} \right)^{k}$
+
+$\ge \left(\dfrac{1}{k}\right)^{k}$
+
+We substitute $k = \dfrac{c\log{n}}{\log{\log{n}}}$ in the equation above to get:
+
+$\therefore Pr(1^{st}$ Bin in group-1 contains $\ge \frac{c\log{n}}{\log{\log{n}}}$ Balls$) \ge \left(\dfrac{1}{c\log{n}/\log{\log{n}}}\right)^{c\log{n}/\log{\log{n}}}$
+
+$\ge \left(\dfrac{1}{{e}^{\log{c\log{n}/\log{\log{n}}}}}\right)^{c\log{n}/\log{\log{n}}}$
+
+$\ge \left(\dfrac{1}{{e}^{(\log{c\log{n}} - \log{\log{\log{n}}})\frac{c\log{n}}{\log{\log{n}}}}} \right)$
+
+$\ge \left(\dfrac{1}{{e}^{\frac{\log{c\log{n}} - \log{\log{\log{n}}}}{\log{\log{n}}}}} \right)$
+
+$\ge \left(\dfrac{1}{{e}^{\frac{\log{c\log{n}} - \log{\log{\log{n}}}}{\log{\log{n}}}}} \right)$
 
 \clearpage
 
@@ -236,9 +252,8 @@ TODO
 \subsection{Backoff strategy to execute all packets in $\Theta(n)$ time when $n$ is \textbf{known}}
 
 We know that if we throw $n$ balls in $n$ bins, $\frac{n}{e}$ of the
-bins will have exactly one ball in them (in expectation). We have also
-proved that with high probability, $\Theta(n)$ of the bins would have
-exactly one ball in them.
+bins will have exactly one ball in them (in expectation). This means
+that $\Theta(n)$ of the bins would have exactly one ball in them.
 
 This means that a \textit{constant fraction} of the packets are
 transmitted at every step. If we reduce the window size by a
@@ -257,7 +272,8 @@ transmitters.
 The running time for this algorithm is $T(n) = T(n/2) + \Theta(n) =
 \Theta(n)$.
 
-
 \clearpage
+
+\section{}
 
 \end{document}
