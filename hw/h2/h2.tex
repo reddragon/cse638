@@ -138,6 +138,11 @@ $\Rightarrow E[Y] = \frac{n}{e}$
 \section {Problem 2 Using W.H.P. Analysis}
 
 \subsection{Negative Correlation}
+Pr(Bin 1 is empty) = $\left(1-\dfrac{1}{n}\right)^n = \left(\dfrac{n-1}{n-2}\right)^n$\\
+Pr(Bin 2 is empty | Bin 1 is empty) = $\left(1-\dfrac{1}{n-1}\right)^n = \left(\dfrac{n-2}{n-3}\right)^n$\\
+Pr(Bin 3 is empty | Bins 1 and 2 are empty) = $\left(1-\dfrac{1}{n-2}\right)^n = \left(\dfrac{n-3}{n-2}\right)^n$\\
+Pr(Bin k is empty | Bins 1, 2, .. k-1 are empty) = $\left(1-\dfrac{1}{n-(k-1)}\right)^n = \left(\dfrac{n-k}{n-k+1}\right)^n$\\
+
 
 \subsection{$\theta(n)$ empty and $\theta(n)$ full bins, with high probability}
 In Question 2, we proved that $E[$\# of empty bins$] = \dfrac{n}{e}$. \\
