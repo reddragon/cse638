@@ -274,6 +274,47 @@ The running time for this algorithm is $T(n) = T(n/2) + \Theta(n) =
 
 \clearpage
 
-\section{}
+\section{Estimating the number of players}
+We have two approaches to solve this problem. Let the number of 
+players be $n$.
+
+\subsection{Using the W.H.P analysis in Question 3}
+If we have an estimate for $n$, we would like to test if this is a good
+estimate. Let's call testing if the estimate is good, a `phase'.
+
+In each `phase', all the players transmit 1 packet, in any of the
+$n$ windows available, randomly. Now, if our estimate of $n$, is correct,
+we have $n$ packets to receive from $n$ players, and $n$ windows available.
+Thus, this is analogous to the problem of throwing $n$ balls in $n$ bins.
+
+Now, from problem 3, we know that if we have $n$ bins and $n$ balls, the number of empty
+bins would be $\dfrac{n}{e}$ with high probability, for large n. If the
+number of empty bins is significantly less than $\dfrac{n}{e}$, that means
+the number of bins is far too fewer than the number of balls. Hence, we 
+double our estimate of $n$.
+
+We start with $n = 2$, and keep doubling our estimate until we reach a good
+estimate. When we reach the closest power of 2, greater than $n$, the 
+number of empty bins, would be approximately $\dfrac{n}{e}$ w.h.p., as we proved earlier
+in Question 3, and our estimate would be at-most a constant factor (2) bigger
+than the actual value of $n$, with high probability
+
+\subsection{Decreasing Number of Windows by a factor of 2}
+Here, we start with an estimate of $n = 2$, and in each phase we have at most $\log_2{n}$
+rounds. Starting from the first round, where we have $n$ windows to transmit, 
+the number of windows in each round progressively decreases by a factor of 2.
+
+In a phase, each player tries to transmit once. If it succeeds, it does not
+transmit anymore in the phase. We progressively decrease the number of windows 
+by a factor of 2 each time, until the number of windows becomes 1, or there are 
+no more transmissions.
+
+If our estimate is good, then the claim is, we would terminate before we run out
+of the number of rounds, because as proved in problem 3, we reduce the number of
+players who haven't transmitted yet by a constant fraction.
+
+If our estimate is not good, we double our estimate, and try again. Thus, our 
+estimate would be at most a constant times bigger than the actual value of $n$,
+with high probability.
 
 \end{document}
