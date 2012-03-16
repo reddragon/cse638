@@ -140,11 +140,54 @@ $\Rightarrow E[Y] = \frac{n}{e}$
 \section {Problem 2 Using W.H.P. Analysis}
 
 \subsection{Negative Correlation}
-Pr(Bin 1 is empty) = $\left(1-\dfrac{1}{n}\right)^n = \left(\dfrac{n-1}{n-2}\right)^n$\\
-Pr(Bin 2 is empty | Bin 1 is empty) = $\left(1-\dfrac{1}{n-1}\right)^n = \left(\dfrac{n-2}{n-3}\right)^n$\\
-Pr(Bin 3 is empty | Bins 1 and 2 are empty) = $\left(1-\dfrac{1}{n-2}\right)^n = \left(\dfrac{n-3}{n-2}\right)^n$\\
-Pr(Bin k is empty | Bins 1, 2, .. k-1 are empty) = $\left(1-\dfrac{1}{n-(k-1)}\right)^n = \left(\dfrac{n-k}{n-k+1}\right)^n$\\
+Let us prove that $X_{1}, X_{2}, .., X_{n}$ are negatively correlated are in the 0-values.\\
 
+Pr(Bin 1 is empty) = $\left(1-\dfrac{1}{n}\right)^n = \left(\dfrac{n-1}{n}\right)^n$\\
+\\
+Pr(Bin 2 is empty\textbar Bin 1 is empty) = $\left(1-\dfrac{1}{n-1}\right)^n = \left(\dfrac{n-2}{n-1}\right)^n$\\
+\\
+Pr(Bin 3 is empty\textbar Bins 1 and 2 are empty) = $\left(1-\dfrac{1}{n-2}\right)^n = \left(\dfrac{n-3}{n-2}\right)^n$\\
+\\
+Similarily,\\
+Pr(Bin $k$ is empty\textbar Bins 1, 2, .., $k$-1 are empty) = $\left(1-\dfrac{1}{n-(k-1)}\right)^n = \left(\dfrac{n-k}{n-k+1}\right)^n$\\
+\\
+Now, given a subset $S$ of $X_{i}, .., X_{j}$ where $k = |S|$, \\
+\\$\Rightarrow$ Pr$\left[\bigwedge\limits_{i \in S}(X_{i} = 0)\right] = \left(\dfrac{n-1}{n}\right)^n \times \left(\dfrac{n-2}{n-1}\right)^n 
+\times .. \times \left(\dfrac{n-k}{n-k+1}\right)^n$\\
+\\
+$\Rightarrow \left(\dfrac{n-k}{n}\right)^{kn}$\\
+\\
+We know that, \\
+$\prod\limits_{i \in S}\left[X_{i} = 0\right] = \left(1-\dfrac{1}{n}\right)^kn = \left(\dfrac{n-1}{n}\right)^{kn}$\\
+\\
+$\because Pr\left[\bigwedge\limits_{i \in S}(X_{i} = 0)\right] \le \prod\limits_{i \in S}\left[X_{i} = 0\right], $ \\
+\\
+$\therefore X_{1}, X_{2}, .., X_{n}$ are negatively correlated in the 0-values.\\
+\\
+Now, we prove that $X_{1}, X_{2}, .., X_{n}$ are negatively correlated are in the 1-values.\\
+\\
+Pr(Bin 1 is non-empty) = $\left(1-\left(1-\dfrac{1}{n}\right)^n\right) = \left(1-\left(\dfrac{n-1}{n}\right)^n\right)$\\
+\\
+Pr(Bin 2 is non-empty\textbar Bin 1 is empty) = $\left(1-\left(1-\dfrac{1}{n}\right)^{n-1}\right) = \left(1-\left(\dfrac{n-1}{n}\right)^{n-1}\right)$\\
+\\
+Pr(Bin $k$ is non-empty\textbar Bin 1,..,$k$-1 are empty) = $\left(1-\left(1-\dfrac{1}{n}\right)^{n-(k-1)}\right) = \left(1-\left(\dfrac{n-1}{n}\right)^{n-(k-1)}\right)$\\
+\\
+Now, given a subset $S$ of $X_{i}, .., X_{j}$ where $k = |S|$, \\
+\\$\Rightarrow$ Pr$\left[\bigwedge\limits_{i \in S}(X_{i} = 1)\right] = \left(1-\left(\dfrac{n-1}{n}\right)^n\right) \times 
+\left(1-\left(\dfrac{n-1}{n}\right)^{n-1}\right) \times .. \times \left(1-\left(\dfrac{n-1}{n}\right)^{n-(k-1)}\right) 
+$\\
+\\
+We know that, \\
+$\prod\limits_{i \in S}\left[X_{i} = 1\right] = \left(1-\left(\dfrac{n-1}{n}\right)^n\right)^{k} $\\
+\\
+By comparing, we can see that,\\
+\\
+$\prod\limits_{i \in S}\left[X_{i} = 1\right] \le Pr\left[\bigwedge\limits_{i \in S}(X_{i} = 1)\right]$ \\
+\\
+$\therefore $ We can say that $X_{1}, X_{2}, .., X_{n}$ are negatively correlated in the 1-values.
+\\
+Also, $\because, X_{1}, X_{2}, .., X_{n}$ are negatively correlated in the 0-values and the 1-values, 
+we can say that $Y_{1}, Y_{2}, .., Y_{n}$ are negatively correlated in the 0-values and the 1-values.
 
 \subsection{$\theta(n)$ empty and $\theta(n)$ full bins, with high probability}
 In Question 2, we proved that $E[$\# of empty bins$] = \dfrac{n}{e}$. \\
