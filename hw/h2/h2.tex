@@ -227,23 +227,43 @@ Let group 1 contain $n^{1/4}$ balls.
 
 $\therefore Pr(1^{st}$ Bin in group-1 contains exactly $k$ Balls$) = \dbinom{n^{1/4}}{k} \left( \dfrac{1}{n^{1/4}} \right)^{k} \left( 1 - \dfrac{1}{n^{1/4}} \right)^{(n^{1/4} - k)}$
 
-$\therefore Pr(1^{st}$ Bin in group-1 contains $\ge k$ Balls$) \ge \dbinom{n^{1/4}}{k} \left( \dfrac{1}{n^{1/4}} \right)^{k}$
+$\therefore Pr(1^{st}$ Bin in group-1 contains $\ge k$ Balls$) \ge \dbinom{n^{1/4}}{k} \left( \dfrac{1}{n^{1/4}} \right)^{k} \dfrac{1}{e}$
 
-$\ge \left(\dfrac{n^{1/4}}{k}\right)^{k} \left( \dfrac{1}{n^{1/4}} \right)^{k}$
+$\ge \left(\dfrac{n^{1/4}}{k}\right)^{k} \left( \dfrac{1}{n^{1/4}} \right)^{k} \dfrac{1}{e}$
 
-$\ge \left(\dfrac{1}{k}\right)^{k}$
+$\ge \left(\dfrac{1}{k}\right)^{k} \dfrac{1}{e}$
 
 We substitute $k = \dfrac{c\log{n}}{\log{\log{n}}}$ in the equation above to get:
 
-$\therefore Pr(1^{st}$ Bin in group-1 contains $\ge \frac{c\log{n}}{\log{\log{n}}}$ Balls$) \ge \left(\dfrac{1}{c\log{n}/\log{\log{n}}}\right)^{c\log{n}/\log{\log{n}}}$
+$\therefore Pr(1^{st}$ Bin in group-1 contains $\ge \frac{c\log{n}}{\log{\log{n}}}$ Balls$) \ge \dfrac{1}{e} \left(\dfrac{1}{c\log{n}/\log{\log{n}}}\right)^{c\log{n}/\log{\log{n}}}$
 
-$\ge \left(\dfrac{1}{{e}^{\log{c\log{n}/\log{\log{n}}}}}\right)^{c\log{n}/\log{\log{n}}}$
+$\ge \dfrac{1}{e} \left(\dfrac{1}{{e}^{\log{(c\log{n}/\log{\log{n}})}}}\right)^{c\log{n}/\log{\log{n}}}$
 
-$\ge \left(\dfrac{1}{{e}^{(\log{c\log{n}} - \log{\log{\log{n}}})\frac{c\log{n}}{\log{\log{n}}}}} \right)$
+$\ge \dfrac{1}{e} \left(\dfrac{1}{{e}^{(\log{(c\log{n})} - \log{\log{\log{n}}})\frac{c\log{n}}{\log{\log{n}}}}} \right)$
 
-$\ge \left(\dfrac{1}{{e}^{\frac{\log{c\log{n}} - \log{\log{\log{n}}}}{\log{\log{n}}}}} \right)$
+$\ge \dfrac{1}{e} \left(\dfrac{1}{{e}^{\frac{\log{c\log{n}} - \log{\log{\log{n}}}}{\log{\log{n}}}}} \right)$
 
-$\ge \left(\dfrac{1}{{e}^{\frac{\log{c\log{n}} - \log{\log{\log{n}}}}{\log{\log{n}}}}} \right)$
+$\ge \dfrac{1}{e} \left(\dfrac{1}{{e}^{\frac{(\log{(c\log{n})} - \log{\log{\log{n}}})c\log{n}}{\log{\log{n}}}}} \right)$ 
+
+$\ge \dfrac{1}{e} \left(\dfrac{1}{{e}^{\frac{(\log{(c\log{n})})c\log{n}}{\log{\log{n}}}}} \right)$ 
+
+$\ge \dfrac{1}{e} \left(\dfrac{1}{{e}^{\frac{(\log{c} + \log{\log{n}})c\log{n}}{\log{\log{n}}}}} \right)$
+
+$\ge \dfrac{1}{e} \left(\dfrac{1}{{e}^{\frac{c\log{c}\log{n} + c\log{\log{n}}(\log{n})}{\log{\log{n}}}}} \right)$ 
+
+$\ge \dfrac{1}{e} \left(\dfrac{1}{{e}^{c\log{n}}} \right)$
+
+$\ge \left(\dfrac{1}{{e}^{c\log{n}}} \right)$
+
+$\ge \left(\dfrac{1}{n^{c}} \right)$
+
+\subsection{Upper bound on the probability that none of the first bin in each group contains $\Omega(\log{n}/\log{\log{n}})$ balls}
+
+$\therefore Pr(1^{st}$ Bin in any group contains $\ge \dfrac{c\log{n}}{\log{\log{n}}}$ Balls$) \ge \left(\dfrac{1}{n^{c-1}} \right)$
+
+But, we already know that the $Pr($ that any bin in any group contains $\le \dfrac{c\log{n}}{\log{\log{n}}}$ Balls$)$ is polynomially small.
+
+Hence, we can say that the fullest bin has $\Theta\left(\dfrac{\log{n}}{\log{\log{n}}}\right)$ balls with high probability.
 
 \clearpage
 
