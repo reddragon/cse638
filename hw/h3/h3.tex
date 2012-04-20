@@ -82,10 +82,52 @@ $\dfrac{\#\ of\ nodes\ to\ rewrite}{\#\ of\ nodes\ that\ caused\ subtree\ to\ go
 
 $=\dfrac{\Theta(n)}{\Omega(n)} = O(1)$
 
-However, since updating a node causes all the subtreed along the
+However, since updating a node causes all the subtrees along the
 root-to-leaf path of which it is a part to go out of balance, we
 charge this node $\Theta(\log{n}) * O(1)$ per update
 $=\Theta(\log{n})$.
+
+\subsection{B-Tree}
+
+\subsubsection{Search cost: $O(\log{n})$}
+
+The branching factor for such a tree would be $\Theta(c)$, in which
+case, the height of the tree is given by the recurrence:
+
+$H(n) = H(n/c) + 1$
+
+$\Rightarrow H(n) = \Theta\left(\dfrac{\log{n}}{\log{c}}\right)$
+
+$\Rightarrow H(n) = \Theta(\log_c{n})$
+
+$\Rightarrow H(n) = \Theta(\log{n})$
+
+Hence, the search cost in such a tree is $O(\log{n})$.
+
+\subsubsection{Worst case update cost: $O(\log{n})$}
+
+To update such a tree, adopt different strategies for insertion and
+deletion. The specific algorithms for worst-case $O(\log{n})$
+insertion and deletion can be found here:
+\url{https://en.wikipedia.org/wiki/B-tree}
+
+\subsubsection{Amortized update cost: $O(\log{n})$ (rebalance whole subtree below a node)}
+
+To rebalance a node by re-creating the subtree under it, we perform an
+$O(n)$ operation to walk the tree in sorted order of nodes and
+re-create the complete tree using a strategy known as
+\textit{bulk-loading}. The cost to update a subtree is therefore:
+
+Cost to update =
+$\dfrac{\#\ of\ nodes\ to\ rewrite}{\#\ of\ nodes\ that\ caused\ subtree\ to\ go\ out\ of\ balance}$
+
+$=\dfrac{\Theta(n)}{\Omega(n)} = O(1)$
+
+However, since updating a node causes all the subtrees along the
+root-to-leaf path of which it is a part to go out of balance, we
+charge this node $\Theta(\log{n}) * O(1)$ per update
+$=\Theta(\log{n})$.
+
 
 % External Memory Problems
 
