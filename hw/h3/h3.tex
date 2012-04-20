@@ -27,6 +27,66 @@
 
 \clearpage
 
+\section{Summary of Weight Balance}
+
+\subsection{Weight Balanced Search Tree}
+
+\subsubsection{Search cost: $O(\log{n})$}
+
+Since the tree is \textit{weight balanced}, the number of nodes in the
+left subtree is a constant fraction away from the number of nodes in
+the right subtree. This means that the tree is also height balanced
+(i.e. the height of the left and right subtrees are within constant
+fractions of each other).
+
+Hence, any root to leaf path in such a tree will not touch more than
+$O(\log{n})$ nodes.
+
+\subsubsection{Worst case update cost: $O(\log{n})$}
+
+To update such a structure, we use \textit{tree rotations}. The
+rotations are similar to the \textit{AVL Tree Rotations} we perform to
+balance an AVL Tree.
+
+On an insert, we check if the balance conditions are met. If they are,
+we don't perform any rotations, and move up to the parent root and
+check the balance at the parent node.
+
+Once we find a node that is out of balance, we need to perform either
+a single left (or right) rotation or 2 rotations in succession. The 2
+cases we need to handle (which are symmetric) are:
+
+\begin{enumerate}
+\item If the right child is heavier than the left child and the left
+  child of the right child of the imbalanced node is heavier than its
+  right sibling, we perform a right rotation around the right child of
+  the current node followed by a left rotation around the current
+  node.
+
+\item If the right child is heavier than the left child and the left
+  child of the right child of the imbalanced node is NOT heavier than its
+  right sibling, we perform a single left rotation around the current
+  node.
+
+\end{enumerate}
+
+\subsubsection{Amortized update cost: $O(\log{n})$ (rebalance whole subtree below a node)}
+
+To rebalance a node by re-creating the subtree under it, we perform an
+$O(n)$ operation to find the median of the subtree to be re-written
+and make the subtree as balanced as possible. The cost to update a
+subtree is therefore:
+
+Cost to update =
+$\dfrac{\#\ of\ nodes\ to\ rewrite}{\#\ of\ nodes\ that\ caused\ subtree\ to\ go\ out\ of\ balance}$
+
+$=\dfrac{\Theta(n)}{\Omega(n)} = O(1)$
+
+However, since updating a node causes all the subtreed along the
+root-to-leaf path of which it is a part to go out of balance, we
+charge this node $\Theta(\log{n}) * O(1)$ per update
+$=\Theta(\log{n})$.
+
 % External Memory Problems
 
 \section{External Sorting}
