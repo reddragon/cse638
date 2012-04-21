@@ -202,7 +202,67 @@ $=\Theta(\log{n})$.
 relative order, we just check the relative ordering of their
 \textit{tag} values. This is a constant time $O(1)$ operation.
 
+\clearpage
+
 % External Memory Problems
+
+\section {Number of Memory Transfers to Search and Update a B-Tree}
+In the standard B-Tree, all internal nodes (i.e., except the root and 
+the leaf nodes) have a branching factor (equal to the number of children it has) 
+between $\frac{B}{2}$ and $B$. All internal nodes, have the number of
+elements which is one less than the number of children, and the elements
+are stored in a sorted order. The $B$ is chosen to co-incide with the size of
+a block.
+
+The elements in a node, necessarily partition
+the elements stored in the sub-trees of the node. Since there are $\theta(B)$
+pivots, the range of the search becomes smaller by a factor of $\theta(B)$ at
+every level. Therefore, the number of levels in the search tree would be 
+$\log_B{N}$, and since the cost of transfering all the elements of a node into
+memory is one block transfer, the overall memory transfers required for searching
+is $O(\log_B{N})$.
+
+TODO: Have to verify if the update cost is correct, because, we saw the worst
+case $O(\log_B{N})$ update.
+
+\clearpage 
+
+\section {Lower Bound on Memory Tranfers for Searching in the DAM Model}
+If we have a set of $N$ sorted elements, with each block transfer, the best we can
+do is to get $B$ elements, each of which acts as a pivot and together they partition
+the current range into $B+1$ sub-ranges of equal sizes. 
+
+After comparing our target element with each of the pivots, we can make a decision
+about the sub-range to search in, which would now be smaller by a factor of $B+1$.
+Thus, the depth of the recursion tree would be $O(\log_B{N})$, and since each level
+requires us to make one memory transfer, the lower bound on the number of memory
+transfers for Searching in the DAM model is $\Omega(\log_B{N})$.
+
+\clearpage
+
+\section {The cost to build a B-Tree is $\theta(\lceil\frac{N}{B}\rceil)$}
+A B-Tree with $N$ elements has $\frac{N}{B}$ elements in nodes at height $h$ = 0, 
+$\frac{N}{B^2}$ elements in nodes at height $h$ = 1, and more generally,
+$\frac{N}{B^h}$ elements in nodes at height $h$. At each level, we scan through
+the current nodes, ... TODO: Fill up
+
+\clearpage
+
+\clearpage
+
+\section {Search and Modify cost in a Weight-Balanced B-Tree}
+The search cost in a Weight-Balanced B-Tree remains the same as the usual
+B-Tree, since each node still has $\theta(B)$ elements, and hence the cost still is
+$O(\log_B{N})$.
+
+Let us define the weight of a tree rooted at a node $u$, by $w(u)$, which is the
+number of nodes in the sub-tree rooted at $u$. Since the B-Tree is weight-balanced,
+the number of inserts / deletes between a rebalance is $\Omega(w(u))$.
+TODO: Complete
+\clearpage
+
+\section {Rebalancing scheme for a Weight-Balanced Tree with Splits and Merges}
+TODO: Fill Up
 
 \clearpage
 
@@ -392,18 +452,17 @@ respectively, and recurse.
 
 \clearpage
 
-\section{vEB Tree in $O(n)$ space}
+\section{vEB Trees in $O(n)$ space}
 The naive version of vEB tree takes $O(u)$ space. However, this is wasteful since, not all
 the widgets would be in use at the very same time. From the Hashing lecture in class, we 
 know that we can hash $n$ elements in $O(n)$ space, while having an $O(1)$ query time 
-(TODO: Revise the Hashing lecture).
 
-Now, instead of explicitly maintaining, we create widgets and allocate space for them
-dynamically. We create a hash-table on the widget index, and set the key as the location in
-memory where we have allocated space for the widget. 
-
-(TODO: How do we prove that inserting $O(n)$ widgets would use up only $O(n)$ space? I have 
-a rough idea, nothing formal)
+Now, instead of explicitly maintaining all $\sqrt{u}$ sub-widgets, and the summary widget, 
+we maintain only the summar widget explicitly for a widget, and allocate sub-widget as required.
+To aid us, we create a dynamic hash-table on the sub-widge index ($X_H$), and when we need to insert
+in a sub-widget for the first time, we allocate space for it dynamically, and insert the 
+sub-widget index ($X_H$) in the table, with the value being the memory location of the newly
+allocated widget.
 
 Now, instead of indexing into the array as we did earlier for a widget, we now lookup in the 
 hash-table to find the location where we have stored the widget, and inspect the widget at that 
