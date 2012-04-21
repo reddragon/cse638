@@ -204,7 +204,6 @@ relative order, we just check the relative ordering of their
 
 \clearpage
 
-=======
 \section{Packed Memory Arrays}
 
 \subsection{Even more \textit{Packed} Memory Array}
@@ -291,8 +290,13 @@ $O(\log_B{N})$.
 
 Let us define the weight of a tree rooted at a node $u$, by $w(u)$, which is the
 number of nodes in the sub-tree rooted at $u$. Since the B-Tree is weight-balanced,
-the number of inserts / deletes between a rebalance is $\Omega(w(u))$.
-TODO: Complete
+the number of updates between a rebalance is $\Omega(w(u))$. Thus the 
+amortized number of elements touched / update at each level would be: 
+$\dfrac{O(w(u))}{\Omega(w(u))}$, which would be $O(1)$ amortized / level. 
+
+Since there are $O(\log_B{N})$ levels, the total amortized number of elements 
+touched / update would be $O(\log_B{N})$, and thus the amortized number of memory transfers
+would be $O\left(\dfrac{\log_B{N}}{B}\right)$.
 \clearpage
 
 \section {Rebalancing scheme for a Weight-Balanced Tree with Splits and Merges}
