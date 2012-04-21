@@ -301,12 +301,12 @@ update an element remain the same even in the modified PMA.
 % External Memory Problems
 
 \section {Number of Memory Transfers to Search and Update a B-Tree}
-In the standard B-Tree, all internal nodes (i.e., except the root and 
-the leaf nodes) have a branching factor (equal to the number of children it has) 
-between $\frac{B}{2}$ and $B$. All internal nodes have the number of
-elements which is one less than the number of children, and the elements
-are stored in a sorted order. The $B$ is chosen to co-incide with the size of
-a block.
+In the standard B-Tree, all internal nodes (i.e., except the root and
+the leaf nodes) have a branching factor (equal to the number of
+children it has) between $\frac{B}{2}$ and $B$. All internal nodes
+have the number of elements which is one less than the number of
+children, and the elements are stored in a sorted order. $B$ is chosen
+to co-incide with the size of a block.
 
 The elements in a node, necessarily partition
 the elements stored in the sub-trees of the node. Since there are $\Theta(B)$
