@@ -361,8 +361,11 @@ can be seen as follows:\\
 $T(N) = T(\frac{N}{B}) + \Theta(\frac{N}{B})$ \\
 $T(B) = 1$\\
 \\
-Clearly, the solution of the recursion is $T(N) = \Theta\left(\dfrac{N}{B}\right)$, but since we cannot
-make a fractional number of memory transfers, we round up the number of memory transfers
+Clearly, the solution of the recursion is $T(N) = \Theta\left(\dfrac{N}{B}\right)$. 
+
+However, since the array might not be block aligned, or $N$ might be less than $B$, 
+or $\dfrac{N}{B}$ might be a fractional number (and we cannot make a 
+fractional number of memory transfers), therfore, we round up the number of memory transfers
 to $\left\lceil \dfrac{N}{B} \right\rceil$.
 
 \clearpage
