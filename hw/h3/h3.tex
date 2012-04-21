@@ -301,20 +301,20 @@ update an element remain the same even in the modified PMA.
 % External Memory Problems
 
 \section {Number of Memory Transfers to Search and Update a B-Tree}
-In the standard B-Tree, all internal nodes (i.e., except the root and 
-the leaf nodes) have a branching factor (equal to the number of children it has) 
-between $\frac{B}{2}$ and $B$. All internal nodes, have the number of
-elements which is one less than the number of children, and the elements
-are stored in a sorted order. The $B$ is chosen to co-incide with the size of
-a block.
+In the standard B-Tree, all internal nodes (i.e., except the root and
+the leaf nodes) have a branching factor (equal to the number of
+children it has) between $\frac{B}{2}$ and $B$. All internal nodes
+have the number of elements which is one less than the number of
+children, and the elements are stored in a sorted order. $B$ is chosen
+to co-incide with the size of a block.
 
-The elements in a node, necessarily partition
-the elements stored in the sub-trees of the node. Since there are $\Theta(B)$
-pivots, the range of the search becomes smaller by a factor of $\Theta(B)$ at
-every level. Therefore, the number of levels in the search tree would be 
-$\log_B{N}$, and since the cost of transfering all the elements of a node into
-memory is one block transfer, the overall memory transfers required for searching
-is $O(\log_B{N})$.
+The elements in a node necessarily partition the elements stored in
+the sub-trees of the node. Since there are $\Theta(B)$ pivots, the
+range of the search becomes smaller by a factor of $\Theta(B)$ at
+every level. Therefore, the number of levels in the search tree would
+be $\log_B{N}$, and since the cost of transfering all the elements of
+a node into memory is one block transfer, the overall memory transfers
+required for searching is $O(\log_B{N})$.
 
 Once we have found the node where the element exists, we will either need to split
 or merge the node, where the element exists. This is an $O(1)$ memory transfer operation.
@@ -585,7 +585,8 @@ respectively, and recurse.
 \section{vEB Trees in $O(n)$ space}
 The naive version of vEB tree takes $O(u)$ space. However, this is wasteful since, not all
 the widgets would be in use at the very same time. From the Hashing lecture in class, we 
-know that we can hash $n$ elements in $O(n)$ space, while having an $O(1)$ query time 
+know that we can hash $n$ elements in $O(n)$ space, while maintaining
+$O(1)$ query time.
 
 Now, instead of explicitly maintaining all $\sqrt{u}$ sub-widgets, and the summary widget, 
 we maintain only the summar widget explicitly for a widget, and allocate sub-widget as required.
