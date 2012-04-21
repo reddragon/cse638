@@ -136,8 +136,8 @@ $=\Theta(\log{n})$.
   Maintenance}
 
 We maintain a linked list of elements as a conceptual tree, with each
-node in the linked list containing a tag such that if $X \prec Y$,
-then $tag(X) < tag(Y)$.
+node in the linked list containing a tag such that if $X \prec Y
+\leftrightarrow tag(X) < tag(Y)$.
 
 If we are going to add $n$ elements to this structure, then our tag
 space should be $n^c$ for some constant $(c \ge 2)$. This ensures that
