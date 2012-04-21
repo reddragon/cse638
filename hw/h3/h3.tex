@@ -238,10 +238,30 @@ PMA are $O(N - \frac{N}{\log{N}}) = O(\frac{N\log{N} - N}{\log{N}})$.
 Let's suppose that we can store between $\frac{N\log{N} - N}{2\log{N}}$ \&
 $\frac{N\log{N} - N}{\log{N}}$ elements in the PMA.
 
-Hence, the ratio:
+Hence, the upper density threshold $\tau_h = \dfrac{max\ \#\ of\ elements\ in\ the\ PMA}{capacity\ of\ the\ PMA}$
 
-$\dfrac{max\ \#\ of\ elements\ in\ the\ PMA}{capacity\ of\ the\ PMA}
-= \dfrac{N\log{N} - N}{N\log{N}} = 1 - \dfrac{1}{\log{N}}$.
+$= \dfrac{N\log{N} - N}{N\log{N}}$
+
+$= 1 - \dfrac{1}{\log{N}}$
+
+We know that $\tau_0 = 1$.
+
+$\therefore$ the difference between the lower and upper density thresholds = $(\tau_0 - \tau_h) = \dfrac{1}{\log{N}}$
+
+The number of levels in the imaginary tree are $\log{N}$.
+
+Hence, the difference between each level is $\dfrac{1}{\log^2{N}}$.
+
+The cost to rebalance a level is $= \dfrac{\Theta(size\ of\ a\ subtree\ rooted\ at\ that\ node)}{\#\ of\ updates\ that\ cause\ the\ subtree\ to\ go\ out\ of\ balance}$
+
+$= \dfrac{\Theta(subtree\ size)}{size\ of\ subtree\ \times\ difference\ in\ threshold\ between\ 2\ consecutive\ levels}$
+
+$= O(\log^2{N})$
+
+However, since there are $\log{N}$ levels, we need to charge each update $\log{N}$.
+
+$\therefore$ the amortized cost per update is $= O(\log^3{N})$.
+
 
 \subsection{Efficient Rebalancing}
 
