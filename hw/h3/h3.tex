@@ -202,11 +202,46 @@ $=\Theta(\log{n})$.
 relative order, we just check the relative ordering of their
 \textit{tag} values. This is a constant time $O(1)$ operation.
 
+\textbf{$O(1)$ Update:} To get $O(1)$ update, we use the technique of
+\textit{indirection}. We cut our imaginary tree so that for a
+structure containing $n$ elements, the top tree contains
+$\Theta(\frac{n}{\log{n}})$ leaf nodes and the bottom tree contains
+$\Theta(\log{n})$ nodes in total.
+
+This means that we update the top tree every $\Theta(\log{n})$
+inserts. This gives us an amortized update cost of
+$\dfrac{\Theta(\log{n})}{\Theta(\log{n})} = O(1)$.
+
+Since the smaller trees each contain only $\Theta(\log{n})$ nodes, we
+can create a tag space of size $n$ (which is exponential in
+$\Theta(\log{n})$), so that every insert takes worst-case $O(1)$ time.
+
+Each element now has 2 tags, a \textit{big-tag} and a
+\textit{little-tag}. To check if an element precedes another in the
+list, we need to check both tags. $X \prec Y \leftrightarrow
+(bigtag(X) < bigtag(Y) \vee (bigtag(X) = bigtag(Y) \wedge littletag(X)
+< littletag(Y)))$.
+
 \clearpage
 
 \section{Packed Memory Arrays}
 
 \subsection{Even more \textit{Packed} Memory Array}
+
+Let $N$ be the physical space allocated (capacity) for the PMA.
+
+$\therefore$ the \# of gaps in this PMA are $O(\frac{N}{\log{N}})$.
+
+$\therefore$ the maximum \# of elements that can be stored in such a
+PMA are $O(N - \frac{N}{\log{N}}) = O(\frac{N\log{N} - N}{\log{N}})$.
+
+Let's suppose that we can store between $\frac{N\log{N} - N}{2\log{N}}$ \&
+$\frac{N\log{N} - N}{\log{N}}$ elements in the PMA.
+
+Hence, the ratio:
+
+$\dfrac{max\ \#\ of\ elements\ in\ the\ PMA}{capacity\ of\ the\ PMA}
+= \dfrac{N\log{N} - N}{N\log{N}} = 1 - \dfrac{1}{\log{N}}$.
 
 \subsection{Efficient Rebalancing}
 
