@@ -316,8 +316,10 @@ be $\log_B{N}$, and since the cost of transfering all the elements of
 a node into memory is one block transfer, the overall memory transfers
 required for searching is $O(\log_B{N})$.
 
-TODO: Have to verify if the update cost is correct, because, we saw the worst
-case $O(\log_B{N})$ update.
+Once we have found the node where the element exists, we will either need to split
+or merge the node, where the element exists. This is an $O(1)$ memory transfer operation.
+
+Thus, once the node has been found, the cost for update is $O(1)$.
 
 \clearpage 
 
