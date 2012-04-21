@@ -308,13 +308,13 @@ have the number of elements which is one less than the number of
 children, and the elements are stored in a sorted order. $B$ is chosen
 to co-incide with the size of a block.
 
-The elements in a node, necessarily partition
-the elements stored in the sub-trees of the node. Since there are $\Theta(B)$
-pivots, the range of the search becomes smaller by a factor of $\Theta(B)$ at
-every level. Therefore, the number of levels in the search tree would be 
-$\log_B{N}$, and since the cost of transfering all the elements of a node into
-memory is one block transfer, the overall memory transfers required for searching
-is $O(\log_B{N})$.
+The elements in a node necessarily partition the elements stored in
+the sub-trees of the node. Since there are $\Theta(B)$ pivots, the
+range of the search becomes smaller by a factor of $\Theta(B)$ at
+every level. Therefore, the number of levels in the search tree would
+be $\log_B{N}$, and since the cost of transfering all the elements of
+a node into memory is one block transfer, the overall memory transfers
+required for searching is $O(\log_B{N})$.
 
 TODO: Have to verify if the update cost is correct, because, we saw the worst
 case $O(\log_B{N})$ update.
