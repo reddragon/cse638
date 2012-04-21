@@ -258,10 +258,43 @@ However, since there are $\log{N}$ levels, we need to charge each update $\log{N
 
 $\therefore$ the amortized cost per update is $= O(\log^3{N})$.
 
+\clearpage
 
 \section{Efficient Rebalancing}
 
+\subsection{Moving every element at most twice}
+
+An algorithm that moves every element at most twice will first
+compress all the elements to one side (say to the left) and then
+expand the elements out from the other side. This is always possible
+since we are always compressing or expanding out elements into blank
+cells.
+
+\clearpage
+
 \section{PMA with arbitrary rebalance windows}
+
+Instead of rebalancing a PMA at fixed interval windows, we can choose
+any interval window to rebalance as long as the size of the intervals
+grows exponentially. We adopt a simple approach wherein we start the
+interval at the element just before the element being inserted. Hence,
+our rebalance window might \textit{wrap around} to the beginning of
+the array.
+
+The analysis is simple if we charge updates to \textit{levels} instead
+of subtrees rooted at certain levels. Hence, in the fixed-interval
+PMA, if we re-balance a subtree rooted at a certain level $l$, we
+charge the updated element $\log{N}$ since it causes $\log{N}$
+subtrees to inch away from being within threshold. In this version of
+the PMA, if we re-balance a subtree rooted at a certain level $l$, we
+charge the \textit{level l} instead of charging the subtree rooted at
+that level.
+
+It is easy to see that we will charge the root node in the original
+PMA the same number of times as we charge imaginary root nodes in the
+modified PMA. The aggregate sum of rebalances at any level in the
+original and the modified PMA remain the same. Hence, the cost to
+update an element remain the same even in the modified PMA.
 
 \clearpage
 
