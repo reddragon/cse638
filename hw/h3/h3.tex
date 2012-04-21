@@ -285,7 +285,7 @@ transfers for Searching in the DAM model is $\Omega(\log_B{N})$.
 
 \clearpage
 
-\section {The cost to build a B-Tree is $\theta(\lceil\frac{N}{B}\rceil)$}
+\section {The cost to build a B-Tree is $\theta\left(\left\lceil\dfrac{N}{B}\right\rceil\right)$}
 In a B-Tree with $N$ elements, a fraction of $\frac{B-1}{B}$ resides in the leaves, and
 the rest of the $\frac{1}{B}$ elements reside in the upper tree. 
 
@@ -310,9 +310,9 @@ can be seen as follows:\\
 $T(N) = T(\frac{N}{B}) + \theta(\frac{N}{B})$ \\
 $T(B) = 1$\\
 \\
-Clearly, the solution of the recursion is $T(N) = \theta(\frac{N}{B})$, but since we cannot
+Clearly, the solution of the recursion is $T(N) = \theta\left(\dfrac{N}{B}\right)$, but since we cannot
 make a fractional number of memory transfers, we round up the number of memory transfers
-to $\lceil \frac{N}{B} \rceil$.
+to $\left\lceil \dfrac{N}{B} \right\rceil$.
 
 \clearpage
 
@@ -332,6 +332,9 @@ $\dfrac{O(w(u))}{\Omega(w(u))}$, which would be $O(1)$ amortized / level.
 Since there are $O(\log_B{N})$ levels, the total amortized number of elements 
 touched / update would be $O(\log_B{N})$, and thus the amortized number of memory transfers
 would be $O\left(\dfrac{\log_B{N}}{B}\right)$.
+
+Therefore, the total amortized number of memory trasfers for search and modify would
+be $O(\log_B{N}) + O\left(\dfrac{\log_B{N}}{B}\right)$
 \clearpage
 
 \section {Rebalancing scheme for a Weight-Balanced Tree with Splits and Merges}
