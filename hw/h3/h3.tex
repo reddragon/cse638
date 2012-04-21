@@ -580,7 +580,8 @@ respectively, and recurse.
 \section{vEB Trees in $O(n)$ space}
 The naive version of vEB tree takes $O(u)$ space. However, this is wasteful since, not all
 the widgets would be in use at the very same time. From the Hashing lecture in class, we 
-know that we can hash $n$ elements in $O(n)$ space, while having an $O(1)$ query time 
+know that we can hash $n$ elements in $O(n)$ space, while maintaining
+$O(1)$ query time.
 
 Now, instead of explicitly maintaining all $\sqrt{u}$ sub-widgets, and the summary widget, 
 we maintain only the summar widget explicitly for a widget, and allocate sub-widget as required.
