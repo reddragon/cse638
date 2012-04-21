@@ -180,10 +180,11 @@ balance.
 $\therefore$ Cost to update =
 $\dfrac{\#\ of\ nodes\ to\ rewrite}{\#\ of\ nodes\ updated\ that\ caused\ subtree\ to\ go\ out\ of\ balance}$
 
-If $T_i$ is the threshold at an unbalanced node at level $i$, then
-$T_{i+1}$ is the threshold at the next level, which is guaranteed to
-be within balance. Therefore, the number of nodes that caused the
-imaginary subtree at level $i$ to go out of balance are:
+If $T_i$ is the number of nodes under an unbalanced subtree node at
+level $i$, then $T_{i+1}$ is the number of nodes at its parent
+subtree, which is guaranteed to be within balance. Therefore, the
+number of nodes that caused the imaginary subtree at level $i$ to go
+out of balance are:
 
 $= T_i - \dfrac{T_{i+1}}{2} = T_i - \dfrac{\alpha T_i}{2} =
 T_i\left(1-\dfrac{\alpha}{2}\right)$
