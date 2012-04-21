@@ -87,6 +87,8 @@ root-to-leaf path of which it is a part to go out of balance, we
 charge this node $\Theta(\log{n}) * O(1)$ per update
 $=\Theta(\log{n})$.
 
+\clearpage
+
 \subsection{B-Tree}
 
 \subsubsection{Search cost: $O(\log{n})$}
@@ -119,7 +121,7 @@ re-create the complete tree using a strategy known as
 \textit{bulk-loading}. The cost to update a subtree is therefore:
 
 Cost to update =
-$\dfrac{\#\ of\ nodes\ to\ rewrite}{\#\ of\ nodes\ that\ caused\ subtree\ to\ go\ out\ of\ balance}$
+$\dfrac{\#\ of\ nodes\ to\ rewrite}{\#\ of\ nodes\ updated\ that\ caused\ subtree\ to\ go\ out\ of\ balance}$
 
 $=\dfrac{\Theta(n)}{\Omega(n)} = O(1)$
 
@@ -128,8 +130,80 @@ root-to-leaf path of which it is a part to go out of balance, we
 charge this node $\Theta(\log{n}) * O(1)$ per update
 $=\Theta(\log{n})$.
 
+\clearpage
+
+\subsection{Weight Balanced Trees for Order Queries: aka Order
+  Maintenance}
+
+We maintain a linked list of elements as a conceptual tree, with each
+node in the linked list containing a tag such that if $X \prec Y$,
+then $tag(X) < tag(Y)$.
+
+If we are going to add $n$ elements to this structure, then our tag
+space should be $n^c$ for some constant $(c \ge 2)$. This ensures that
+our tag space is at least a $2^{nd}$-degree polynomial in $n$.
+
+\textbf{Insertion:} Our structure is conceptually a
+\textit{weight-balanced tree}. If we want to insert a new node in the
+linked list, we do so at the leaf level. Once we have identified the
+node after which we want to insert the new new we check if the tag
+just greater than the tag of the existing node is taken. If it is not
+taken, we assign that tag value to the newly inserted node and insert
+it into the structure. If on the other hand, the tag is taken, we
+perform some number of rebalances so that we have a free tag that we
+can assign to the newly inserted node.
+
+The algorithm for performing rebalances is as follows:
+
+\begin{enumerate}
+
+\item We define something known as \textit{density thresholds}. Each
+  interval of size $2^h$ is capable of holding $T^h$ elements, for $(1
+  < T < 2)$.
+
+\item \textit{Intervals} in the tree are defined as runs of sizes that
+  are powers of 2, such as 1, 2, 4, 8, 16, \ldots{}
+
+\item Find the smallest interval that is within density thresholds and
+  re-write it. i.e. Space out the tags as evenly as possible within
+  this interval.
+
+\item If the complete sturecture is not within density thresholds,
+  allocate a structure such that the tag space now has space for
+  ${(2n)}^c$ elements, and re-write the complete structure.
+
+\end{enumerate}
+
+Every element insertion inches $\Theta(\log{n})$ trees away from
+balance.
+
+$\therefore$ Cost to update =
+$\dfrac{\#\ of\ nodes\ to\ rewrite}{\#\ of\ nodes\ updated\ that\ caused\ subtree\ to\ go\ out\ of\ balance}$
+
+If $T_i$ is the threshold at an unbalanced node at level $i$, then
+$T_{i+1}$ is the threshold at the next level, which is guaranteed to
+be within balance. Therefore, the number of nodes that caused the
+imaginary subtree at level $i$ to go out of balance are:
+
+$= T_i - \dfrac{T_{i+1}}{2} = T_i - \dfrac{\alpha T_i}{2} =
+T_i\left(1-\dfrac{\alpha}{2}\right)$
+
+$\because T_{i+1} = \alpha T_i$
+
+$\therefore$ Cost to update $= \dfrac{T_i}{T_i(1-(\alpha/2))} = O(1)$
+
+However, since updating a node causes all the subtrees along the
+root-to-leaf path of which it is a part to go out of balance, we
+charge this node $\Theta(\log{n}) * O(1)$ per update
+$=\Theta(\log{n})$.
+
+\textbf{Querying:} Given 2 pointers to elements, to query their
+relative order, we just check the relative ordering of their
+\textit{tag} values. This is a constant time $O(1)$ operation.
 
 % External Memory Problems
+
+\clearpage
 
 \section{External Sorting}
 
