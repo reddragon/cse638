@@ -27,11 +27,9 @@
 
 \clearpage
 
-\section{Summary of Weight Balance}
+\section{Weight Balanced Search Tree}
 
-\subsection{Weight Balanced Search Tree}
-
-\subsubsection{Search cost: $O(\log{n})$}
+\subsection{Search cost: $O(\log{n})$}
 
 Since the tree is \textit{weight balanced}, the number of nodes in the
 left subtree is a constant fraction away from the number of nodes in
@@ -42,7 +40,7 @@ fractions of each other).
 Hence, any root to leaf path in such a tree will not touch more than
 $O(\log{n})$ nodes.
 
-\subsubsection{Worst case update cost: $O(\log{n})$}
+\subsection{Worst case update cost: $O(\log{n})$}
 
 To update such a structure, we use \textit{tree rotations}. The
 rotations are similar to the \textit{AVL Tree Rotations} we perform to
@@ -70,7 +68,7 @@ cases we need to handle (which are symmetric) are:
 
 \end{enumerate}
 
-\subsubsection{Amortized update cost: $O(\log{n})$ (rebalance whole subtree below a node)}
+\subsection{Amortized update cost: $O(\log{n})$ (rebalance whole subtree below a node)}
 
 To rebalance a node by re-creating the subtree under it, we perform an
 $O(n)$ operation to find the median of the subtree to be re-written
@@ -89,9 +87,9 @@ $=\Theta(\log{n})$.
 
 \clearpage
 
-\subsection{B-Tree}
+\section{B-Tree}
 
-\subsubsection{Search cost: $O(\log{n})$}
+\subsection{Search cost: $O(\log{n})$}
 
 The branching factor for such a tree would be $\Theta(c)$, in which
 case, the height of the tree is given by the recurrence:
@@ -106,14 +104,14 @@ $\Rightarrow H(n) = \Theta(\log{n})$
 
 Hence, the search cost in such a tree is $O(\log{n})$.
 
-\subsubsection{Worst case update cost: $O(\log{n})$}
+\subsection{Worst case update cost: $O(\log{n})$}
 
 To update such a tree, adopt different strategies for insertion and
 deletion. The specific algorithms for worst-case $O(\log{n})$
 insertion and deletion can be found here:
 \url{https://en.wikipedia.org/wiki/B-tree}
 
-\subsubsection{Amortized update cost: $O(\log{n})$ (rebalance whole subtree below a node)}
+\subsection{Amortized update cost: $O(\log{n})$ (rebalance whole subtree below a node)}
 
 To rebalance a node by re-creating the subtree under it, we perform an
 $O(n)$ operation to walk the tree in sorted order of nodes and
@@ -132,7 +130,7 @@ $=\Theta(\log{n})$.
 
 \clearpage
 
-\subsection{Weight Balanced Trees for Order Queries: aka Order
+\section{Weight Balanced Trees for Order Queries: aka Order
   Maintenance}
 
 We maintain a linked list of elements as a conceptual tree, with each
@@ -224,9 +222,7 @@ list, we need to check both tags. $X \prec Y \leftrightarrow
 
 \clearpage
 
-\section{Packed Memory Arrays}
-
-\subsection{Even more \textit{Packed} Memory Array}
+\section{Even more \textit{Packed} Memory Array}
 
 Let $N$ be the physical space allocated (capacity) for the PMA.
 
@@ -243,9 +239,9 @@ Hence, the ratio:
 $\dfrac{max\ \#\ of\ elements\ in\ the\ PMA}{capacity\ of\ the\ PMA}
 = \dfrac{N\log{N} - N}{N\log{N}} = 1 - \dfrac{1}{\log{N}}$.
 
-\subsection{Efficient Rebalancing}
+\section{Efficient Rebalancing}
 
-\subsection{PMA with arbitrary rebalance windows}
+\section{PMA with arbitrary rebalance windows}
 
 \clearpage
 
@@ -260,8 +256,8 @@ are stored in a sorted order. The $B$ is chosen to co-incide with the size of
 a block.
 
 The elements in a node, necessarily partition
-the elements stored in the sub-trees of the node. Since there are $\theta(B)$
-pivots, the range of the search becomes smaller by a factor of $\theta(B)$ at
+the elements stored in the sub-trees of the node. Since there are $\Theta(B)$
+pivots, the range of the search becomes smaller by a factor of $\Theta(B)$ at
 every level. Therefore, the number of levels in the search tree would be 
 $\log_B{N}$, and since the cost of transfering all the elements of a node into
 memory is one block transfer, the overall memory transfers required for searching
@@ -285,7 +281,7 @@ transfers for Searching in the DAM model is $\Omega(\log_B{N})$.
 
 \clearpage
 
-\section {The cost to build a B-Tree is $\theta\left(\left\lceil\dfrac{N}{B}\right\rceil\right)$}
+\section {The cost to build a B-Tree is $\Theta\left(\left\lceil\dfrac{N}{B}\right\rceil\right)$}
 In a B-Tree with $N$ elements, a fraction of $\frac{B-1}{B}$ resides in the leaves, and
 the rest of the $\frac{1}{B}$ elements reside in the upper tree. 
 
@@ -307,10 +303,10 @@ $\frac{N}{B}$ memory transfers for scanning through the array and creating new n
 , and $\frac{N}{B^2}$ for copying elements into the temporary array. The recursion
 can be seen as follows:\\
 
-$T(N) = T(\frac{N}{B}) + \theta(\frac{N}{B})$ \\
+$T(N) = T(\frac{N}{B}) + \Theta(\frac{N}{B})$ \\
 $T(B) = 1$\\
 \\
-Clearly, the solution of the recursion is $T(N) = \theta\left(\dfrac{N}{B}\right)$, but since we cannot
+Clearly, the solution of the recursion is $T(N) = \Theta\left(\dfrac{N}{B}\right)$, but since we cannot
 make a fractional number of memory transfers, we round up the number of memory transfers
 to $\left\lceil \dfrac{N}{B} \right\rceil$.
 
@@ -320,7 +316,7 @@ to $\left\lceil \dfrac{N}{B} \right\rceil$.
 
 \section {Search and Modify cost in a Weight-Balanced B-Tree}
 The search cost in a Weight-Balanced B-Tree remains the same as the usual
-B-Tree, since each node still has $\theta(B)$ elements, and hence the cost still is
+B-Tree, since each node still has $\Theta(B)$ elements, and hence the cost still is
 $O(\log_B{N})$.
 
 Let us define the weight of a tree rooted at a node $u$, by $w(u)$, which is the
