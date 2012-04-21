@@ -586,7 +586,7 @@ know that we can hash $n$ elements in $O(n)$ space, while maintaining
 $O(1)$ query time.
 
 Now, instead of explicitly maintaining all $\sqrt{u}$ sub-widgets, and the summary widget, 
-we maintain only the summar widget explicitly for a widget, and allocate sub-widget as required.
+we maintain only the summary widget explicitly for a widget, and allocate sub-widget as required.
 To aid us, we create a dynamic hash-table on the sub-widge index ($X_H$), and when we need to insert
 in a sub-widget for the first time, we allocate space for it dynamically, and insert the 
 sub-widget index ($X_H$) in the table, with the value being the memory location of the newly
