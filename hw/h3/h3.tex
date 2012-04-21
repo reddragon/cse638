@@ -241,10 +241,33 @@ transfers for Searching in the DAM model is $\Omega(\log_B{N})$.
 \clearpage
 
 \section {The cost to build a B-Tree is $\theta(\lceil\frac{N}{B}\rceil)$}
-A B-Tree with $N$ elements has $\frac{N}{B}$ elements in nodes at height $h$ = 0, 
-$\frac{N}{B^2}$ elements in nodes at height $h$ = 1, and more generally,
-$\frac{N}{B^h}$ elements in nodes at height $h$. At each level, we scan through
-the current nodes, ... TODO: Fill up
+In a B-Tree with $N$ elements, a fraction of $\frac{B-1}{B}$ resides in the leaves, and
+the rest of the $\frac{1}{B}$ elements reside in the upper tree. 
+
+The algorithm to build a B-Tree would be:
+\begin{enumerate}
+\item If the number of elements in the current array $N \leq B $, stop.
+\item Allocate space for $\frac{N}{B}$ elements in a temporary array.
+\item Scan through the array, copy the first $B-1$ elements into a new node.
+\item Copy the next element into a parent block. 
+\item Mark the newly created node as the child of the element inserted in the parent block.
+\item If the parent block has $B$ elements, append it into the temporary array.
+\item If there are no more elements left to be seen in the current array, set the temporary
+array as the new current array, and go to step 1.
+\item Else, if there are elements left to be seen in the current array, and go to step 3.
+\end{enumerate}
+
+We see that, for each iteration, if the size of the current array is $N$, we incur
+$\frac{N}{B}$ memory transfers for scanning through the array and creating new nodes
+, and $\frac{N}{B^2}$ for copying elements into the temporary array. The recursion
+can be seen as follows:\\
+
+$T(N) = T(\frac{N}{B}) + \theta(\frac{N}{B})$ \\
+$T(B) = 1$\\
+\\
+Clearly, the solution of the recursion is $T(N) = \theta(\frac{N}{B})$, but since we cannot
+make a fractional number of memory transfers, we round up the number of memory transfers
+to $\lceil \frac{N}{B} \rceil$.
 
 \clearpage
 
