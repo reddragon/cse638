@@ -580,21 +580,25 @@ respectively, and recurse.
 \clearpage
 
 \section{vEB Trees in $O(n)$ space}
-The naive version of vEB tree takes $O(u)$ space. However, this is wasteful since, not all
-the widgets would be in use at the very same time. From the Hashing lecture in class, we 
-know that we can hash $n$ elements in $O(n)$ space, while maintaining
-$O(1)$ query time.
 
-Now, instead of explicitly maintaining all $\sqrt{u}$ sub-widgets, and the summary widget, 
-we maintain only the summary widget explicitly for a widget, and allocate sub-widget as required.
-To aid us, we create a dynamic hash-table on the sub-widge index ($X_H$), and when we need to insert
-in a sub-widget for the first time, we allocate space for it dynamically, and insert the 
-sub-widget index ($X_H$) in the table, with the value being the memory location of the newly
-allocated widget.
+The naive version of vEB tree takes $O(u)$ space. However, this is
+wasteful since, not all the widgets would be in use at the very same
+time. From the Hashing lecture in class, we know that we can hash $n$
+elements in $O(n)$ space, while maintaining $O(1)$ query time.
 
-Now, instead of indexing into the array as we did earlier for a widget, we now lookup in the 
-hash-table to find the location where we have stored the widget, and inspect the widget at that 
-location, and proceed appropriately. The rest of the algorithm remains the same.
+Now, instead of explicitly maintaining all $\sqrt{u}$ sub-widgets, and
+the summary widget, we maintain only the summary widget explicitly for
+a widget, and allocate sub-widget as required.  To aid us, we create a
+dynamic hash-table on the sub-widget index ($X_H$), and when we need
+to insert in a sub-widget for the first time, we allocate space for it
+dynamically, and insert the sub-widget index ($X_H$) in the table,
+with the value being the memory location of the newly allocated
+widget.
+
+Now, instead of indexing into the array as we did earlier for a
+widget, we now lookup in the hash-table to find the location where we
+have stored the widget, and inspect the widget at that location, and
+proceed appropriately. The rest of the algorithm remains the same.
 
 
 \end{document}
