@@ -284,17 +284,19 @@ the array.
 The analysis is simple if we charge updates to \textit{levels} instead
 of subtrees rooted at certain levels. Hence, in the fixed-interval
 PMA, if we re-balance a subtree rooted at a certain level $l$, we
-charge the updated element $\log{N}$ since it causes $\log{N}$
-subtrees to inch away from being within threshold. In this version of
-the PMA, if we re-balance a subtree rooted at a certain level $l$, we
-charge the \textit{level l} instead of charging the subtree rooted at
-that level.
+charge the updated element $\Theta(\log{N})$ since it causes
+$\Theta(\log{N})$ subtrees to inch away from being within
+threshold. In this version of the PMA, if we re-balance a subtree
+rooted at a certain level $l$, we charge the updated element
+$\Theta(\log{N})$ since it causes \textit{some} subtree rooted at
+\textit{level l} to inch out of balance.
 
 It is easy to see that we will charge the root node in the original
-PMA the same number of times as we charge imaginary root nodes in the
-modified PMA. The aggregate sum of rebalances at any level in the
-original and the modified PMA remain the same. Hence, the cost to
-update an element remain the same even in the modified PMA.
+PMA the same number of times as we charge the aggregate of all
+imaginary root nodes in the modified PMA. The aggregate sum of
+rebalances at any level in the original and the modified PMA remain
+the same. Hence, the cost to update an element remains the same even
+in the modified PMA.
 
 \clearpage
 
